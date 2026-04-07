@@ -1,1 +1,187 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Corporativa | Projecte IA</title>
+    <style>
+        /* ESTILS CSS INCLOSSOS */
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            color: #333;
+            scroll-behavior: smooth;
+        }
 
+        header {
+            background: #2c3e50;
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        section {
+            padding: 100px 20px;
+            max-width: 800px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .hero {
+            background-color: #f4f4f4;
+            padding: 150px 20px;
+        }
+
+        .serveis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .servei-card {
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        /* ESTILS DEL FORMULARI */
+        form {
+            text-align: left;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* Perquè no surti del contenidor */
+        }
+
+        button {
+            background-color: #27ae60;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        button:hover {
+            background-color: #219150;
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#inici">Inici</a></li>
+                <li><a href="#serveis">Serveis</a></li>
+                <li><a href="#sobre-nosaltres">Sobre nosaltres</a></li>
+                <li><a href="#contacte">Contacte</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="inici" class="hero">
+        <h1>Benvinguts a la Nostra Empresa</h1>
+        <p>Solucions professionals adaptades a les teves necessitats.</p>
+    </section>
+
+    <section id="serveis">
+        <h2>Els nostres Serveis</h2>
+        <div class="serveis-grid">
+            <div class="servei-card">
+                <h3>Consultoria</h3>
+                <p>Anàlisi estratègica per al teu negoci.</p>
+            </div>
+            <div class="servei-card">
+                <h3>Desenvolupament</h3>
+                <p>Creació d'eines digitals a mida.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="sobre-nosaltres">
+        <h2>Sobre nosaltres</h2>
+        <p>Som un equip compromès amb la innovació i l'eficiència, utilitzant les darreres tecnologies per ajudar els nostres clients a créixer.</p>
+    </section>
+
+    <section id="contacte">
+        <h2>Contacte</h2>
+        <form action="#">
+            <div class="form-group">
+                <label for="nom">Nom:</label>
+                <input type="text" id="nom" name="nom" placeholder="Escriu el teu nom" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Correu electrònic:</label>
+                <input type="email" id="email" name="email" placeholder="exemple@correu.com" required>
+            </div>
+            <div class="form-group">
+                <label for="telefon">Telèfon de contacte:</label>
+                <input type="tel" id="telefon" name="telefon" placeholder="El teu número de telèfon" required>
+            </div>
+            <div class="form-group">
+                <label for="missatge">Missatge:</label>
+                <textarea id="missatge" name="missatge" rows="4" placeholder="Com et podem ajudar?" required></textarea>
+            </div>
+            <button type="submit">Enviar missatge</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Web Corporativa. Creat amb l'ajuda de Gemini (IA).</p>
+    </footer>
+
+</body>
+</html>
