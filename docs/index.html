@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEXUS | Agencia Creativa Digital</title>
+    <title>Foodlogistics | Logística Alimentària Intel·ligent</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&family=Plus+Jakarta+Sans:wght@300;500;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #6366f1; /* Indigo moderno */
-            --secondary: #a855f7; /* Púrpura */
+            --primary: #10b981; /* Verd fresc (alimentació/logística) */
+            --secondary: #3b82f6; /* Blau (confiança/fred) */
             --dark: #0f172a;
             --light: #f8fafc;
             --glass: rgba(255, 255, 255, 0.03);
@@ -36,7 +36,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 50% 50%, #1e1b4b 0%, #0f172a 100%);
+            background: radial-gradient(circle at 50% 50%, #064e3b 0%, #0f172a 100%);
             z-index: -1;
         }
 
@@ -47,7 +47,7 @@
             background: var(--primary);
             filter: blur(150px);
             border-radius: 50%;
-            opacity: 0.15;
+            opacity: 0.1;
             animation: move 20s infinite alternate;
         }
 
@@ -73,9 +73,10 @@
         .logo {
             font-size: 1.8rem;
             font-weight: 800;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
+            background: linear-gradient(to right, #fff, var(--primary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
         }
 
         nav ul { display: flex; gap: 2.5rem; list-style: none; }
@@ -101,22 +102,22 @@
         }
 
         .hero h1 {
-            font-size: clamp(3rem, 8vw, 6rem);
+            font-size: clamp(2.5rem, 7vw, 5.5rem);
             font-weight: 800;
-            line-height: 1;
+            line-height: 1.1;
             margin-bottom: 1.5rem;
             letter-spacing: -2px;
         }
 
         .gradient-text {
-            background: linear-gradient(45deg, #fff 30%, var(--primary));
+            background: linear-gradient(45deg, var(--primary) 30%, var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .hero p {
             font-size: 1.2rem;
-            max-width: 600px;
+            max-width: 700px;
             opacity: 0.6;
             margin-bottom: 2.5rem;
         }
@@ -129,22 +130,22 @@
             font-weight: 700;
             text-decoration: none;
             transition: 0.4s;
-            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.2);
             border: 1px solid transparent;
         }
 
         .btn:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(99, 102, 241, 0.5);
+            box-shadow: 0 15px 30px rgba(16, 185, 129, 0.4);
             background: transparent;
             border-color: var(--primary);
         }
 
         /* --- SECCIONS --- */
         section { padding: 120px 10%; }
-        h2 { font-size: 3rem; margin-bottom: 3rem; text-align: center; }
+        h2 { font-size: 3rem; margin-bottom: 3rem; text-align: center; font-weight: 800; }
 
-        /* --- SERVEIS (GRID MODERNA) --- */
+        /* --- SERVEIS --- */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -157,13 +158,11 @@
             border-radius: 24px;
             border: 1px solid var(--glass-border);
             transition: 0.4s;
-            position: relative;
-            overflow: hidden;
         }
 
         .card:hover {
             background: rgba(255, 255, 255, 0.05);
-            transform: scale(1.02);
+            transform: translateY(-10px);
             border-color: var(--primary);
         }
 
@@ -171,13 +170,14 @@
 
         /* --- SOBRE NOSALTRES --- */
         .about-box {
-            background: linear-gradient(135deg, rgba(99,102,241,0.1), rgba(168,85,247,0.1));
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(59, 130, 246, 0.1));
             padding: 4rem;
             border-radius: 40px;
             text-align: center;
+            border: 1px solid var(--glass-border);
         }
 
-        /* --- CONTACTE (FORMULARI GLASS) --- */
+        /* --- CONTACTE --- */
         .contact-form {
             max-width: 700px;
             margin: 0 auto;
@@ -188,24 +188,22 @@
             backdrop-filter: blur(20px);
         }
 
-        .input-group { margin-bottom: 1.5rem; }
+        .input-group { margin-bottom: 1.5rem; text-align: left; }
         label { display: block; margin-bottom: 0.5rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.6; }
         
         input, textarea {
             width: 100%;
             padding: 1.2rem;
-            background: rgba(0,0,0,0.2);
+            background: rgba(0,0,0,0.3);
             border: 1px solid var(--glass-border);
             border-radius: 12px;
             color: white;
             font-size: 1rem;
-            transition: 0.3s;
         }
 
         input:focus, textarea:focus {
             outline: none;
             border-color: var(--primary);
-            background: rgba(0,0,0,0.4);
         }
 
         .submit-btn {
@@ -220,20 +218,20 @@
             transition: 0.4s;
         }
 
-        .submit-btn:hover { letter-spacing: 2px; opacity: 0.9; }
+        .submit-btn:hover { transform: scale(1.02); filter: brightness(1.1); }
 
         footer {
             text-align: center;
             padding: 4rem;
-            opacity: 0.4;
+            opacity: 0.5;
             font-size: 0.8rem;
+            border-top: 1px solid var(--glass-border);
         }
 
-        /* RESPONSIVE */
         @media (max-width: 768px) {
             header { padding: 1.5rem 5%; }
-            nav { display: none; } /* En una web real aquí aniria un menú hamburguesa */
-            .hero h1 { font-size: 3.5rem; }
+            nav { display: none; }
+            .hero h1 { font-size: 3rem; }
         }
     </style>
 </head>
@@ -243,7 +241,7 @@
     <div class="blob"></div>
 
     <header>
-        <div class="logo">NEXUS.</div>
+        <div class="logo">Foodlogistics</div>
         <nav>
             <ul>
                 <li><a href="#inici">Inici</a></li>
@@ -255,65 +253,65 @@
     </header>
 
     <section id="inici" class="hero">
-        <h1>Dissenyem el <span class="gradient-text">Futur Digital</span></h1>
-        <p>A NEXUS unim creativitat i tecnologia per crear experiències web que deixen empremta.</p>
-        <a href="#serveis" class="btn">Explora el nostre univers</a>
+        <h1>L'evolució de la <span class="gradient-text">Logística Alimentària</span></h1>
+        <p>Connectem productors i consumidors amb una xarxa de transport intel·ligent, sostenible i 100% segura.</p>
+        <a href="#contacte" class="btn">Sol·licita informació</a>
     </section>
 
     <section id="serveis">
-        <h2>Experiències</h2>
+        <h2>Solucions 360º</h2>
         <div class="grid">
             <div class="card">
-                <h3>01. Branding</h3>
-                <p>Donem ànima a la teva marca amb una identitat visual potent i única.</p>
+                <h3>Transport Refrigerat</h3>
+                <p>Control de temperatura en temps real per garantir la màxima frescor dels teus productes.</p>
             </div>
             <div class="card">
-                <h3>02. Web UI/UX</h3>
-                <p>Interfícies d'usuari d'última generació enfocades a la conversió.</p>
+                <h3>Gestió de Stock</h3>
+                <p>Magatzems intel·ligents amb tecnologia d'última generació per a una traçabilitat total.</p>
             </div>
             <div class="card">
-                <h3>03. Tech AI</h3>
-                <p>Implementació de solucions d'intel·ligència artificial d'avantguarda.</p>
+                <h3>Distribució Last-Mile</h3>
+                <p>Lliuraments ràpids i eficients en zones urbanes minimitzant l'impacte ambiental.</p>
             </div>
         </div>
     </section>
 
     <section id="sobre-nosaltres">
         <div class="about-box">
-            <h2>Més que una agència</h2>
+            <h2>Compromesos amb la qualitat</h2>
             <p style="max-width: 800px; margin: 0 auto; font-size: 1.2rem; opacity: 0.8;">
-                Som exploradors digitals. Creiem en la intersecció entre el disseny minimalista i la potència tecnològica. Cada línia de codi i cada píxel té un propòsit: fer créixer el teu negoci.
+                A Foodlogistics portem més de 15 anys transformant la manera en què els aliments viatgen. La nostra missió és senzilla: que cada producte arribi a la seva destinació tan fresc com el primer dia, utilitzant rutes optimitzades per IA.
             </p>
         </div>
     </section>
 
     <section id="contacte">
-        <h2>Fem quelcom èpic?</h2>
+        <h2>Vols optimitzar la teva cadena?</h2>
         <div class="contact-form">
             <form action="#">
                 <div class="input-group">
                     <label>Nom</label>
-                    <input type="text" placeholder="Com et dius?" required>
+                    <input type="text" placeholder="El teu nom o empresa" required>
                 </div>
                 <div class="input-group">
                     <label>Correu electrònic</label>
-                    <input type="email" placeholder="hola@empresa.com" required>
+                    <input type="email" placeholder="contacte@empresa.com" required>
                 </div>
                 <div class="input-group">
-                    <label>Telèfon</label>
-                    <input type="tel" placeholder="+34 000 000 000" required>
+                    <label>Telèfon de contacte</label>
+                    <input type="tel" placeholder="600 000 000" required>
                 </div>
                 <div class="input-group">
-                    <label>El teu missatge</label>
-                    <textarea rows="4" placeholder="Explica'ns el teu somni..." required></textarea>
+                    <label>Missatge</label>
+                    <textarea rows="4" placeholder="Com podem ajudar la teva logística?" required></textarea>
                 </div>
-                <button type="submit" class="submit-btn">ENVIAR PROPOSTA</button>
+                <button type="submit" class="submit-btn">ENVIAR SOL·LICITUD</button>
             </form>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 NEXUS DIGITAL STUDIO. Contingut generat amb Gemini.</p>
+        <p>&copy; 2026 Foodlogistics. Contingut generat amb l'ajuda de Gemini (IA).</p>
     </footer>
 
 </body>
