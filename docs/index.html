@@ -3,388 +3,317 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Innovatech Solutions | Futur Digital</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>NEXUS | Agencia Creativa Digital</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&family=Plus+Jakarta+Sans:wght@300;500;800&display=swap" rel="stylesheet">
     <style>
-        /* --- ESTILOS GENERALES (RESET Y BASES) --- */
         :root {
-            --primary-color: #0056b3; /* Azul acento */
-            --secondary-color: #1a252f; /* Azul muy oscuro para texto/header */
-            --bg-light: #f8f9fa; /* Fondo gris muy claro */
-            --text-dark: #333;
-            --text-light: #fff;
-            --shadow: 0 4px 6px rgba(0,0,0,0.1);
-            --transition: all 0.3s ease;
+            --primary: #6366f1; /* Indigo moderno */
+            --secondary: #a855f7; /* Púrpura */
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
             line-height: 1.6;
-            color: var(--text-dark);
-            background-color: var(--bg-light);
-            scroll-behavior: smooth; /* Desplazamiento suave entre secciones */
         }
 
-        a { text-decoration: none; color: inherit; }
-        ul { list-style: none; }
+        /* --- BACKGROUND DINÀMIC --- */
+        .bg-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, #1e1b4b 0%, #0f172a 100%);
+            z-index: -1;
+        }
 
-        /* --- HEADER Y NAVEGACIÓN --- */
+        .blob {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: var(--primary);
+            filter: blur(150px);
+            border-radius: 50%;
+            opacity: 0.15;
+            animation: move 20s infinite alternate;
+        }
+
+        @keyframes move {
+            from { transform: translate(-10%, -10%); }
+            to { transform: translate(20%, 20%); }
+        }
+
+        /* --- NAVIGATION --- */
         header {
-            background-color: var(--secondary-color);
-            color: var(--text-light);
-            padding: 1rem 5%;
+            padding: 1.5rem 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: 1px;
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .logo span { color: var(--primary-color); }
-
-        nav ul { display: flex; gap: 2rem; }
-
+        nav ul { display: flex; gap: 2.5rem; list-style: none; }
         nav a {
-            font-weight: 400;
-            font-size: 0.95rem;
-            opacity: 0.8;
-            transition: var(--transition);
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: 0.3s;
+            opacity: 0.7;
         }
+        nav a:hover { opacity: 1; color: var(--primary); }
 
-        nav a:hover {
-            opacity: 1;
-            color: var(--primary-color);
-        }
-
-        /* --- SECCIONES GENERALES --- */
-        section {
-            padding: 100px 10%; /* Mucho espacio arriba y abajo */
-            min-height: 80vh;
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-        }
-
-        h2.section-title {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--secondary-color);
-            position: relative;
-            padding-bottom: 15px;
-        }
-
-        /* Línea decorativa bajo el título */
-        h2.section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: var(--primary-color);
-            border-radius: 2px;
-        }
-
-        .section-subtitle {
-            font-size: 1.1rem;
-            color: #666;
-            margin-bottom: 4rem;
             text-align: center;
-            max-width: 600px;
+            padding: 0 10%;
         }
 
-        /* --- SECCIÓN 1: INICI (HERO) --- */
-        #inici {
-            /* Usamos una imagen de stock profesional directamente */
-            background: linear-gradient(rgba(26, 37, 47, 0.85), rgba(26, 37, 47, 0.95)), 
-                        url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600') no-repeat center center/cover;
-            color: var(--text-light);
-            text-align: center;
-            height: 100vh;
-            padding-top: 80px; /* Offset del header fixed */
-        }
-
-        #inici h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800;
+            line-height: 1;
             margin-bottom: 1.5rem;
-            line-height: 1.2;
+            letter-spacing: -2px;
         }
 
-        #inici p {
+        .gradient-text {
+            background: linear-gradient(45deg, #fff 30%, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
             font-size: 1.2rem;
-            margin-bottom: 3rem;
-            opacity: 0.9;
-            max-width: 700px;
+            max-width: 600px;
+            opacity: 0.6;
+            margin-bottom: 2.5rem;
         }
 
-        .btn-cta {
-            background-color: var(--primary-color);
-            color: var(--text-light);
-            padding: 15px 35px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: var(--transition);
-            border: 2px solid transparent;
+        .btn {
+            padding: 1rem 2.5rem;
+            background: var(--primary);
+            color: white;
+            border-radius: 100px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: 0.4s;
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+            border: 1px solid transparent;
         }
 
-        .btn-cta:hover {
-            background-color: transparent;
-            border-color: var(--text-light);
-            transform: translateY(-3px);
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(99, 102, 241, 0.5);
+            background: transparent;
+            border-color: var(--primary);
         }
 
-        /* --- SECCIÓN 2: SERVEIS --- */
-        #serveis { background-color: var(--text-light); }
+        /* --- SECCIONS --- */
+        section { padding: 120px 10%; }
+        h2 { font-size: 3rem; margin-bottom: 3rem; text-align: center; }
 
-        .services-grid {
+        /* --- SERVEIS (GRID MODERNA) --- */
+        .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            width: 100%;
+            gap: 2rem;
         }
 
-        .service-card {
-            background: var(--text-light);
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            border-bottom: 3px solid transparent;
-            text-align: left;
+        .card {
+            background: var(--glass);
+            padding: 3rem;
+            border-radius: 24px;
+            border: 1px solid var(--glass-border);
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
         }
 
-        .service-card:hover {
-            transform: translateY(-10px);
-            border-bottom-color: var(--primary-color);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        .card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: scale(1.02);
+            border-color: var(--primary);
         }
 
-        .service-icon {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
+        .card h3 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--primary); }
+
+        /* --- SOBRE NOSALTRES --- */
+        .about-box {
+            background: linear-gradient(135deg, rgba(99,102,241,0.1), rgba(168,85,247,0.1));
+            padding: 4rem;
+            border-radius: 40px;
+            text-align: center;
         }
 
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--secondary-color);
+        /* --- CONTACTE (FORMULARI GLASS) --- */
+        .contact-form {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--glass);
+            padding: 3rem;
+            border-radius: 30px;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(20px);
         }
 
-        .service-card p {
-            color: #555;
-            font-size: 0.95rem;
-            margin-bottom: 1.5rem;
-        }
-
-        /* --- SECCIÓN 3: SOBRE NOSALTRES --- */
-        #sobre-nosaltres { background-color: var(--bg-light); }
-
-        .about-content {
-            display: flex;
-            align-items: center;
-            gap: 4rem;
-            text-align: left;
-            width: 100%;
-        }
-
-        .about-text { flex: 1; }
+        .input-group { margin-bottom: 1.5rem; }
+        label { display: block; margin-bottom: 0.5rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.6; }
         
-        .about-text p {
-            margin-bottom: 1.5rem;
-            font-size: 1.05rem;
-            color: #444;
-        }
-
-        /* --- SECCIÓN 4: CONTACTE --- */
-        #contacte {
-            background-color: var(--text-light);
-        }
-
-        .contact-wrapper {
-            width: 100%;
-            max-width: 600px;
-            background: var(--bg-light);
-            padding: 50px;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-        }
-
-        /* ESTILOS DEL FORMULARIO OBLIGATORIO */
-        form { display: flex; flex-direction: column; gap: 1.5rem; text-align: left; }
-
-        .form-group { display: flex; flex-direction: column; }
-
-        label {
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--secondary-color);
-        }
-
         input, textarea {
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-family: inherit;
+            width: 100%;
+            padding: 1.2rem;
+            background: rgba(0,0,0,0.2);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            color: white;
             font-size: 1rem;
-            transition: var(--transition);
+            transition: 0.3s;
         }
 
         input:focus, textarea:focus {
             outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
+            border-color: var(--primary);
+            background: rgba(0,0,0,0.4);
         }
 
-        textarea { resize: vertical; }
-
-        .btn-submit {
-            background-color: var(--secondary-color);
-            color: var(--text-light);
-            padding: 15px;
+        .submit-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
             border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: 600;
+            border-radius: 12px;
+            color: white;
+            font-weight: 800;
             cursor: pointer;
-            transition: var(--transition);
+            transition: 0.4s;
         }
 
-        .btn-submit:hover {
-            background-color: var(--primary-color);
-            transform: translateY(-2px);
-        }
+        .submit-btn:hover { letter-spacing: 2px; opacity: 0.9; }
 
-        /* --- FOOTER --- */
         footer {
-            background-color: var(--secondary-color);
-            color: rgba(255,255,255,0.7);
             text-align: center;
-            padding: 30px 5%;
-            font-size: 0.9rem;
+            padding: 4rem;
+            opacity: 0.4;
+            font-size: 0.8rem;
         }
 
-        /* --- RESPONSIVE MOBILE --- */
+        /* RESPONSIVE */
         @media (max-width: 768px) {
-            header { padding: 1rem 20px; }
-            nav ul { gap: 1rem; }
-            nav a { font-size: 0.8rem; }
-            
-            #inici h1 { font-size: 2.2rem; }
-            section { padding: 80px 20px; }
-            .services-grid { grid-template-columns: 1fr; }
-            .about-content { flex-direction: column; text-align: center; }
-            .contact-wrapper { padding: 30px 20px; }
+            header { padding: 1.5rem 5%; }
+            nav { display: none; } /* En una web real aquí aniria un menú hamburguesa */
+            .hero h1 { font-size: 3.5rem; }
         }
     </style>
 </head>
 <body>
 
+    <div class="bg-glow"></div>
+    <div class="blob"></div>
+
     <header>
-        <div class="logo">INNOVA<span>TECH</span></div>
+        <div class="logo">NEXUS.</div>
         <nav>
             <ul>
                 <li><a href="#inici">Inici</a></li>
                 <li><a href="#serveis">Serveis</a></li>
-                <li><a href="#sobre-nosaltres">Nosaltres</a></li>
+                <li><a href="#sobre-nosaltres">Sobre nosaltres</a></li>
                 <li><a href="#contacte">Contacte</a></li>
             </ul>
         </nav>
     </header>
 
-    <section id="inici">
-        <h1>Transformació Digital<br>sense Límits.</h1>
-        <p>Acompanyem a empreses ambicioses en el disseny i construcció de productes digitals moderns, eficients i escalables.</p>
-        <a href="#contacte" class="btn-cta">Començar Projecte</a>
+    <section id="inici" class="hero">
+        <h1>Dissenyem el <span class="gradient-text">Futur Digital</span></h1>
+        <p>A NEXUS unim creativitat i tecnologia per crear experiències web que deixen empremta.</p>
+        <a href="#serveis" class="btn">Explora el nostre univers</a>
     </section>
 
     <section id="serveis">
-        <h2 class="section-title">Què fem per tu</h2>
-        <p class="section-subtitle">Solucions integrals adaptades als reptes del mercat actual.</p>
-        
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">&#128187;</div> <h3>Desenvolupament Web</h3>
-                <p>Creem aplicacions web robustes, ràpides i optimitzades per a qualsevol dispositiu, utilitzant les darreres tecnologies.</p>
+        <h2>Experiències</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>01. Branding</h3>
+                <p>Donem ànima a la teva marca amb una identitat visual potent i única.</p>
             </div>
-            
-            <div class="service-card">
-                <div class="service-icon">&#128200;</div> <h3>Estratègia Digital</h3>
-                <p>T'ajudem a definir el camí cap a l'èxit digital, analitzant el teu mercat i optimitzant els teus processos.</p>
+            <div class="card">
+                <h3>02. Web UI/UX</h3>
+                <p>Interfícies d'usuari d'última generació enfocades a la conversió.</p>
             </div>
-            
-            <div class="service-card">
-                <div class="service-icon">&#129302;</div> <h3>Integració d'IA</h3>
-                <p>Implementem solucions d'Intel·ligència Artificial per automatitzar tasques i millorar la presa de decisions.</p>
+            <div class="card">
+                <h3>03. Tech AI</h3>
+                <p>Implementació de solucions d'intel·ligència artificial d'avantguarda.</p>
             </div>
         </div>
     </section>
 
     <section id="sobre-nosaltres">
-        <h2 class="section-title">Som el teu Partner Tecnològic</h2>
-        
-        <div class="about-content">
-            <div class="about-text">
-                <p>A Innovatech Solutions, no som simplement proveïdors; ens convertim en una extensió del teu equip. Som un grup de professionals apassionats per la tecnologia i la innovació, amb més de 10 anys d'experiència al sector digital.</p>
-                <p>La nostra filosofia es basa en la transparència, la qualitat del codi i el focus total en els resultats del negoci del client. Creiem que la millor tecnologia és aquella que resol problemes reals de manera invisible.</p>
-            </div>
+        <div class="about-box">
+            <h2>Més que una agència</h2>
+            <p style="max-width: 800px; margin: 0 auto; font-size: 1.2rem; opacity: 0.8;">
+                Som exploradors digitals. Creiem en la intersecció entre el disseny minimalista i la potència tecnològica. Cada línia de codi i cada píxel té un propòsit: fer créixer el teu negoci.
+            </p>
         </div>
     </section>
 
     <section id="contacte">
-        <h2 class="section-title">Parlem del teu Projecte</h2>
-        <p class="section-subtitle">Explica'ns la teva idea i et respondrem en menys de 24 hores amb una proposta inicial.</p>
-        
-        <div class="contact-wrapper">
+        <h2>Fem quelcom èpic?</h2>
+        <div class="contact-form">
             <form action="#">
-                <div class="form-group">
-                    <label for="nom">Nom Complet *</label>
-                    <input type="text" id="nom" name="nom" placeholder="Ex: Joan García" required>
+                <div class="input-group">
+                    <label>Nom</label>
+                    <input type="text" placeholder="Com et dius?" required>
                 </div>
-                
-                <div class="form-group">
-                    <label for="email">Correu Electrònic Corporatiu *</label>
-                    <input type="email" id="email" name="email" placeholder="Ex: jgarcia@empresa.com" required>
+                <div class="input-group">
+                    <label>Correu electrònic</label>
+                    <input type="email" placeholder="hola@empresa.com" required>
                 </div>
-                
-                <div class="form-group">
-                    <label for="telefon">Telèfon de Contacte *</label>
-                    <input type="tel" id="telefon" name="telefon" placeholder="Ex: 600 123 456" required pattern="[0-9]{9,13}">
+                <div class="input-group">
+                    <label>Telèfon</label>
+                    <input type="tel" placeholder="+34 000 000 000" required>
                 </div>
-                
-                <div class="form-group">
-                    <label for="missatge">Com et podem ajudar? *</label>
-                    <textarea id="missatge" name="missatge" rows="6" placeholder="Descriu breument el teu projecte o consulta..." required></textarea>
+                <div class="input-group">
+                    <label>El teu missatge</label>
+                    <textarea rows="4" placeholder="Explica'ns el teu somni..." required></textarea>
                 </div>
-                
-                <button type="submit" class="btn-submit">Enviar Sol·licitud</button>
+                <button type="submit" class="submit-btn">ENVIAR PROPOSTA</button>
             </form>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 Innovatech Solutions. Tots els drets reservats.</p>
-        <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.6;">Estructura i contingut generats amb l'assistència de l'IA Gemini.</p>
+        <p>&copy; 2026 NEXUS DIGITAL STUDIO. Contingut generat amb Gemini.</p>
     </footer>
 
 </body>
