@@ -3,184 +3,388 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Corporativa | Projecte IA</title>
+    <title>Innovatech Solutions | Futur Digital</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* ESTILS CSS INCLOSSOS */
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            color: #333;
-            scroll-behavior: smooth;
+        /* --- ESTILOS GENERALES (RESET Y BASES) --- */
+        :root {
+            --primary-color: #0056b3; /* Azul acento */
+            --secondary-color: #1a252f; /* Azul muy oscuro para texto/header */
+            --bg-light: #f8f9fa; /* Fondo gris muy claro */
+            --text-dark: #333;
+            --text-light: #fff;
+            --shadow: 0 4px 6px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
         }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            scroll-behavior: smooth; /* Desplazamiento suave entre secciones */
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* --- HEADER Y NAVEGACIÓN --- */
         header {
-            background: #2c3e50;
-            color: white;
-            padding: 1rem 0;
+            background-color: var(--secondary-color);
+            color: var(--text-light);
+            padding: 1rem 5%;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-        }
-
-        nav ul {
             display: flex;
-            justify-content: center;
-            list-style: none;
-            margin: 0;
-            padding: 0;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
         }
 
-        nav ul li {
-            margin: 0 15px;
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
         }
 
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
+        .logo span { color: var(--primary-color); }
+
+        nav ul { display: flex; gap: 2rem; }
+
+        nav a {
+            font-weight: 400;
+            font-size: 0.95rem;
+            opacity: 0.8;
+            transition: var(--transition);
         }
 
+        nav a:hover {
+            opacity: 1;
+            color: var(--primary-color);
+        }
+
+        /* --- SECCIONES GENERALES --- */
         section {
-            padding: 100px 20px;
-            max-width: 800px;
-            margin: auto;
+            padding: 100px 10%; /* Mucho espacio arriba y abajo */
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h2.section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        /* Línea decorativa bajo el título */
+        h2.section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 4rem;
             text-align: center;
+            max-width: 600px;
         }
 
-        .hero {
-            background-color: #f4f4f4;
-            padding: 150px 20px;
+        /* --- SECCIÓN 1: INICI (HERO) --- */
+        #inici {
+            /* Usamos una imagen de stock profesional directamente */
+            background: linear-gradient(rgba(26, 37, 47, 0.85), rgba(26, 37, 47, 0.95)), 
+                        url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600') no-repeat center center/cover;
+            color: var(--text-light);
+            text-align: center;
+            height: 100vh;
+            padding-top: 80px; /* Offset del header fixed */
         }
 
-        .serveis-grid {
+        #inici h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        #inici p {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            max-width: 700px;
+        }
+
+        .btn-cta {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .btn-cta:hover {
+            background-color: transparent;
+            border-color: var(--text-light);
+            transform: translateY(-3px);
+        }
+
+        /* --- SECCIÓN 2: SERVEIS --- */
+        #serveis { background-color: var(--text-light); }
+
+        .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            width: 100%;
         }
 
-        .servei-card {
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-        }
-
-        /* ESTILS DEL FORMULARI */
-        form {
+        .service-card {
+            background: var(--text-light);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-bottom: 3px solid transparent;
             text-align: left;
-            background: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            max-width: 500px;
-            margin: 0 auto;
         }
 
-        .form-group {
-            margin-bottom: 15px;
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-bottom-color: var(--primary-color);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
         }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .service-card p {
+            color: #555;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* --- SECCIÓN 3: SOBRE NOSALTRES --- */
+        #sobre-nosaltres { background-color: var(--bg-light); }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            text-align: left;
+            width: 100%;
+        }
+
+        .about-text { flex: 1; }
+        
+        .about-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            color: #444;
+        }
+
+        /* --- SECCIÓN 4: CONTACTE --- */
+        #contacte {
+            background-color: var(--text-light);
+        }
+
+        .contact-wrapper {
+            width: 100%;
+            max-width: 600px;
+            background: var(--bg-light);
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+
+        /* ESTILOS DEL FORMULARIO OBLIGATORIO */
+        form { display: flex; flex-direction: column; gap: 1.5rem; text-align: left; }
+
+        .form-group { display: flex; flex-direction: column; }
 
         label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
         }
 
         input, textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box; /* Perquè no surti del contenidor */
-        }
-
-        button {
-            background-color: #27ae60;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
             font-size: 1rem;
+            transition: var(--transition);
         }
 
-        button:hover {
-            background-color: #219150;
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
         }
 
+        textarea { resize: vertical; }
+
+        .btn-submit {
+            background-color: var(--secondary-color);
+            color: var(--text-light);
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-submit:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        /* --- FOOTER --- */
         footer {
-            background: #2c3e50;
-            color: white;
+            background-color: var(--secondary-color);
+            color: rgba(255,255,255,0.7);
             text-align: center;
-            padding: 20px 0;
+            padding: 30px 5%;
+            font-size: 0.9rem;
+        }
+
+        /* --- RESPONSIVE MOBILE --- */
+        @media (max-width: 768px) {
+            header { padding: 1rem 20px; }
+            nav ul { gap: 1rem; }
+            nav a { font-size: 0.8rem; }
+            
+            #inici h1 { font-size: 2.2rem; }
+            section { padding: 80px 20px; }
+            .services-grid { grid-template-columns: 1fr; }
+            .about-content { flex-direction: column; text-align: center; }
+            .contact-wrapper { padding: 30px 20px; }
         }
     </style>
 </head>
 <body>
 
     <header>
+        <div class="logo">INNOVA<span>TECH</span></div>
         <nav>
             <ul>
                 <li><a href="#inici">Inici</a></li>
                 <li><a href="#serveis">Serveis</a></li>
-                <li><a href="#sobre-nosaltres">Sobre nosaltres</a></li>
+                <li><a href="#sobre-nosaltres">Nosaltres</a></li>
                 <li><a href="#contacte">Contacte</a></li>
             </ul>
         </nav>
     </header>
 
-    <section id="inici" class="hero">
-        <h1>Benvinguts a la Nostra Empresa</h1>
-        <p>Solucions professionals adaptades a les teves necessitats.</p>
+    <section id="inici">
+        <h1>Transformació Digital<br>sense Límits.</h1>
+        <p>Acompanyem a empreses ambicioses en el disseny i construcció de productes digitals moderns, eficients i escalables.</p>
+        <a href="#contacte" class="btn-cta">Començar Projecte</a>
     </section>
 
     <section id="serveis">
-        <h2>Els nostres Serveis</h2>
-        <div class="serveis-grid">
-            <div class="servei-card">
-                <h3>Consultoria</h3>
-                <p>Anàlisi estratègica per al teu negoci.</p>
+        <h2 class="section-title">Què fem per tu</h2>
+        <p class="section-subtitle">Solucions integrals adaptades als reptes del mercat actual.</p>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">&#128187;</div> <h3>Desenvolupament Web</h3>
+                <p>Creem aplicacions web robustes, ràpides i optimitzades per a qualsevol dispositiu, utilitzant les darreres tecnologies.</p>
             </div>
-            <div class="servei-card">
-                <h3>Desenvolupament</h3>
-                <p>Creació d'eines digitals a mida.</p>
+            
+            <div class="service-card">
+                <div class="service-icon">&#128200;</div> <h3>Estratègia Digital</h3>
+                <p>T'ajudem a definir el camí cap a l'èxit digital, analitzant el teu mercat i optimitzant els teus processos.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">&#129302;</div> <h3>Integració d'IA</h3>
+                <p>Implementem solucions d'Intel·ligència Artificial per automatitzar tasques i millorar la presa de decisions.</p>
             </div>
         </div>
     </section>
 
     <section id="sobre-nosaltres">
-        <h2>Sobre nosaltres</h2>
-        <p>Som un equip compromès amb la innovació i l'eficiència, utilitzant les darreres tecnologies per ajudar els nostres clients a créixer.</p>
+        <h2 class="section-title">Som el teu Partner Tecnològic</h2>
+        
+        <div class="about-content">
+            <div class="about-text">
+                <p>A Innovatech Solutions, no som simplement proveïdors; ens convertim en una extensió del teu equip. Som un grup de professionals apassionats per la tecnologia i la innovació, amb més de 10 anys d'experiència al sector digital.</p>
+                <p>La nostra filosofia es basa en la transparència, la qualitat del codi i el focus total en els resultats del negoci del client. Creiem que la millor tecnologia és aquella que resol problemes reals de manera invisible.</p>
+            </div>
+        </div>
     </section>
 
     <section id="contacte">
-        <h2>Contacte</h2>
-        <form action="#">
-            <div class="form-group">
-                <label for="nom">Nom:</label>
-                <input type="text" id="nom" name="nom" placeholder="Escriu el teu nom" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Correu electrònic:</label>
-                <input type="email" id="email" name="email" placeholder="exemple@correu.com" required>
-            </div>
-            <div class="form-group">
-                <label for="telefon">Telèfon de contacte:</label>
-                <input type="tel" id="telefon" name="telefon" placeholder="El teu número de telèfon" required>
-            </div>
-            <div class="form-group">
-                <label for="missatge">Missatge:</label>
-                <textarea id="missatge" name="missatge" rows="4" placeholder="Com et podem ajudar?" required></textarea>
-            </div>
-            <button type="submit">Enviar missatge</button>
-        </form>
+        <h2 class="section-title">Parlem del teu Projecte</h2>
+        <p class="section-subtitle">Explica'ns la teva idea i et respondrem en menys de 24 hores amb una proposta inicial.</p>
+        
+        <div class="contact-wrapper">
+            <form action="#">
+                <div class="form-group">
+                    <label for="nom">Nom Complet *</label>
+                    <input type="text" id="nom" name="nom" placeholder="Ex: Joan García" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Correu Electrònic Corporatiu *</label>
+                    <input type="email" id="email" name="email" placeholder="Ex: jgarcia@empresa.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="telefon">Telèfon de Contacte *</label>
+                    <input type="tel" id="telefon" name="telefon" placeholder="Ex: 600 123 456" required pattern="[0-9]{9,13}">
+                </div>
+                
+                <div class="form-group">
+                    <label for="missatge">Com et podem ajudar? *</label>
+                    <textarea id="missatge" name="missatge" rows="6" placeholder="Descriu breument el teu projecte o consulta..." required></textarea>
+                </div>
+                
+                <button type="submit" class="btn-submit">Enviar Sol·licitud</button>
+            </form>
+        </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 Web Corporativa. Creat amb l'ajuda de Gemini (IA).</p>
+        <p>&copy; 2026 Innovatech Solutions. Tots els drets reservats.</p>
+        <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.6;">Estructura i contingut generats amb l'assistència de l'IA Gemini.</p>
     </footer>
 
 </body>
