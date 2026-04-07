@@ -3,25 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Foodlogistics | Logística Alimentària Intel·ligent de Mataró</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&family=Plus+Jakarta+Sans:wght@300;500;800&display=swap" rel="stylesheet">
+    <title>Foodlogistics | Logística Alimentària de Mataró</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #10b981; /* Verd fresc (alimentació/logística) */
-            --secondary: #3b82f6; /* Blau (confiança/fred) */
+            --primary: #10b981;
+            --secondary: #3b82f6;
             --dark: #0f172a;
             --light: #f8fafc;
             --glass: rgba(255, 255, 255, 0.03);
             --glass-border: rgba(255, 255, 255, 0.1);
-            --shadow-premium: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
 
         body {
             background-color: var(--dark);
@@ -30,20 +24,15 @@
             line-height: 1.6;
         }
 
-        /* --- BACKGROUND DINÀMIC --- */
         .bg-glow {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             background: radial-gradient(circle at 50% 50%, #064e3b 0%, #0f172a 100%);
             z-index: -2;
         }
 
-        /* --- NAVIGATION --- */
         header {
-            padding: 1.5rem 10%;
+            padding: 1rem 10%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -55,7 +44,20 @@
             border-bottom: 1px solid var(--glass-border);
         }
 
-        .logo {
+        /* --- LOGO AMB IMATGE --- */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
+        .logo-text {
             font-size: 1.8rem;
             font-weight: 800;
             background: linear-gradient(to right, #fff, var(--primary));
@@ -64,18 +66,10 @@
             letter-spacing: -1px;
         }
 
-        nav ul { display: flex; gap: 2.5rem; list-style: none; }
-        nav a {
-            color: var(--light);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
-            transition: 0.3s;
-            opacity: 0.7;
-        }
+        nav ul { display: flex; gap: 2rem; list-style: none; }
+        nav a { color: var(--light); text-decoration: none; font-size: 0.9rem; opacity: 0.7; transition: 0.3s; }
         nav a:hover { opacity: 1; color: var(--primary); }
 
-        /* --- HERO SECTION CON IMAGEN REAL --- */
         .hero {
             height: 100vh;
             display: flex;
@@ -84,59 +78,19 @@
             align-items: center;
             text-align: center;
             padding: 0 10%;
-            /* IMAGEN DE FONDO REAL (Camión en carretera) */
             background-image: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.9)), 
-                              url('https://images.unsplash.com/photo-1519003722824-194d4455a60c?q=80&w=2000');
+                              url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2000');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
         }
 
-        .hero h1 {
-            font-size: clamp(2.5rem, 7vw, 5.5rem);
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            letter-spacing: -2px;
-        }
+        .hero h1 { font-size: clamp(2.5rem, 7vw, 5rem); font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; }
+        .gradient-text { background: linear-gradient(45deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        .gradient-text {
-            background: linear-gradient(45deg, var(--primary) 30%, var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+        section { padding: 100px 10%; text-align: center; }
+        h2 { font-size: 2.5rem; margin-bottom: 3rem; font-weight: 800; }
 
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            opacity: 0.8;
-            margin-bottom: 2.5rem;
-        }
-
-        .btn {
-            padding: 1rem 2.5rem;
-            background: var(--primary);
-            color: white;
-            border-radius: 100px;
-            font-weight: 700;
-            text-decoration: none;
-            transition: 0.4s;
-            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.2);
-            border: 1px solid transparent;
-        }
-
-        .btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(16, 185, 129, 0.4);
-            background: transparent;
-            border-color: var(--primary);
-        }
-
-        /* --- SECCIONS CON FOTOS REALES --- */
-        section { padding: 120px 10%; }
-        h2 { font-size: 3rem; margin-bottom: 3rem; text-align: center; font-weight: 800; }
-
-        /* --- SERVEIS --- */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -145,128 +99,51 @@
 
         .card {
             background: var(--glass);
-            padding: 0; /* Quitamos padding para que la foto llegue al borde */
             border-radius: 24px;
             border: 1px solid var(--glass-border);
+            overflow: hidden;
             transition: 0.4s;
-            overflow: hidden; /* Importante para bordes redondeados */
-            display: flex;
-            flex-direction: column;
+            text-align: left;
         }
 
-        /* Foto dentro de la tarjeta */
+        .card:hover { transform: translateY(-10px); border-color: var(--primary); background: rgba(255, 255, 255, 0.05); }
+
         .card-img {
             width: 100%;
-            height: 200px;
+            height: 220px;
             background-size: cover;
             background-position: center;
         }
 
-        .card-content {
-            padding: 2.5rem;
-        }
-
-        .card:hover {
-            background: rgba(255, 255, 255, 0.05);
-            transform: translateY(-10px);
-            border-color: var(--primary);
-        }
-
-        .card h3 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--primary); }
-
-        /* --- SOBRE NOSALTRES CON IMAGEN REAL Y EFECTO --- */
-        .about-box {
-            position: relative;
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(59, 130, 246, 0.1));
-            padding: 4rem;
-            border-radius: 40px;
-            text-align: center;
-            border: 1px solid var(--glass-border);
-            overflow: hidden;
-        }
-
-        /* Foto de fondo difuminada para esta sección */
-        .about-box::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('https://images.unsplash.com/photo-1581092916357-5896ebc48073?q=80&w=1500');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.1; /* Muy sutil */
-            filter: blur(10px);
-            z-index: -1;
-        }
-
-        /* --- CONTACTE --- */
-        .contact-wrapper {
-            /* Foto de fondo real para la sección de contacto (Mataró) */
-            background-image: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.95)),
-                              url('https://images.unsplash.com/photo-1558236712-d4944d6b63c9?q=80&w=1500');
-            background-size: cover;
-            background-position: center;
-            border-radius: 30px;
-            padding: 60px 20px;
-        }
+        .card-content { padding: 2rem; }
+        .card h3 { color: var(--primary); margin-bottom: 1rem; font-size: 1.4rem; }
+        .card p { font-size: 0.95rem; opacity: 0.8; }
 
         .contact-form {
             max-width: 600px;
             margin: 0 auto;
             background: var(--glass);
             padding: 3rem;
-            border-radius: 20px;
+            border-radius: 24px;
             border: 1px solid var(--glass-border);
             backdrop-filter: blur(20px);
-            box-shadow: var(--shadow-premium);
         }
 
-        .input-group { margin-bottom: 1.5rem; text-align: left; }
-        label { display: block; margin-bottom: 0.5rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.6; }
-        
+        .input-group { margin-bottom: 1.2rem; text-align: left; }
+        label { display: block; margin-bottom: 0.5rem; font-size: 0.8rem; opacity: 0.6; text-transform: uppercase; }
         input, textarea {
-            width: 100%;
-            padding: 1.2rem;
-            background: rgba(0,0,0,0.3);
-            border: 1px solid var(--glass-border);
-            border-radius: 12px;
-            color: white;
-            font-size: 1rem;
+            width: 100%; padding: 1rem; background: rgba(0,0,0,0.3); border: 1px solid var(--glass-border);
+            border-radius: 12px; color: white; font-size: 1rem;
         }
-
-        input:focus, textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
+        input:focus { outline: none; border-color: var(--primary); }
 
         .submit-btn {
-            width: 100%;
-            padding: 1.2rem;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            border: none;
-            border-radius: 12px;
-            color: white;
-            font-weight: 800;
-            cursor: pointer;
-            transition: 0.4s;
+            width: 100%; padding: 1rem; background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border: none; border-radius: 12px; color: white; font-weight: 800; cursor: pointer; transition: 0.3s;
         }
+        .submit-btn:hover { filter: brightness(1.2); transform: scale(1.02); }
 
-        .submit-btn:hover { transform: scale(1.02); filter: brightness(1.1); }
-
-        footer {
-            text-align: center;
-            padding: 4rem;
-            opacity: 0.5;
-            font-size: 0.8rem;
-            border-top: 1px solid var(--glass-border);
-        }
-
-        @media (max-width: 768px) {
-            header { padding: 1.5rem 5%; }
-            nav { display: none; }
-            .hero h1 { font-size: 3rem; }
-            section { padding: 80px 20px; }
-            .about-box, .contact-form { padding: 2rem; }
-        }
+        footer { padding: 4rem; text-align: center; opacity: 0.5; font-size: 0.8rem; border-top: 1px solid var(--glass-border); }
     </style>
 </head>
 <body>
@@ -274,7 +151,10 @@
     <div class="bg-glow"></div>
 
     <header>
-        <div class="logo">Foodlogistics</div>
+        <div class="logo-container">
+            <img src="https://cdn-icons-png.flaticon.com/512/3239/3239045.png" alt="Logo Foodlogistics" class="logo-img">
+            <div class="logo-text">Foodlogistics</div>
+        </div>
         <nav>
             <ul>
                 <li><a href="#inici">Inici</a></li>
@@ -286,79 +166,65 @@
     </header>
 
     <section id="inici" class="hero">
-        <h1>L'evolució de la <span class="gradient-text">Logística Alimentària</span> a Mataró</h1>
-        <p>Connectem productors de la comarca amb el món a través d'una xarxa de transport refrigerat intel·ligent, sostenible i 100% segura.</p>
-        <a href="#contacte" class="btn">Sol·licita informació</a>
+        <h1>Logística <span class="gradient-text">Intel·ligent</span><br>per a l'Alimentació</h1>
+        <p>Solucions de transport i emmagatzematge d'alta precisió a Mataró.</p>
     </section>
 
     <section id="serveis">
         <h2>Solucions 360º de Fred</h2>
         <div class="grid">
             <div class="card">
-                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1610348725531-843dff563e2c?q=80&w=600');"></div>
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1610348725531-843dff563e2c?q=80&w=800');"></div>
                 <div class="card-content">
                     <h3>Transport Refrigerat</h3>
-                    <p>Mantenim la cadena de fred intacta des del camp fins a la taula. Control de temperatura en temps real.</p>
+                    <p>Mantenim la cadena de fred intacta amb control de temperatura constant.</p>
                 </div>
             </div>
             
             <div class="card">
-                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1587293855726-70cdb7182e0e?q=80&w=600');"></div>
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=800');"></div>
                 <div class="card-content">
                     <h3>Gestió de Stock AI</h3>
-                    <p>Magatzems intel·ligents a Mataró amb traçabilitat total de lot i data de caducitat, optimitzats per IA.</p>
+                    <p>Magatzems intel·ligents a Mataró amb traçabilitat total i optimització per IA.</p>
                 </div>
             </div>
             
             <div class="card">
-                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1595246140625-573b715d11dc?q=80&w=600');"></div>
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1566576721346-d4a3b4eaad5b?q=80&w=800');"></div>
                 <div class="card-content">
-                    <h3>Distribució Last-Mile</h3>
-                    <p>Lliuraments ràpids i eficients a restaurants i supermercats, minimitzant l'impacte ambiental.</p>
+                    <h3>Distribución Last-Mile</h3>
+                    <p>Lliuraments ràpids i sostenibles directament al teu negoci o restaurant.</p>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section id="sobre-nosaltres">
-        <div class="about-box">
-            <h2>Compromesos amb la qualitat des de Mataró</h2>
-            <p style="max-width: 800px; margin: 0 auto; font-size: 1.2rem; opacity: 0.9;">
-                A Foodlogistics portem més de 15 anys transformant la manera en què els aliments viatgen. La nostra missió és senzilla: que cada producte del Maresme arribi a la seva destinació tan fresc com el primer dia.
-            </p>
         </div>
     </section>
 
     <section id="contacte">
-        <h2>Vols optimitzar la teva cadena?</h2>
-        <div class="contact-wrapper">
-            <div class="contact-form">
-                <form action="#">
-                    <div class="input-group">
-                        <label>Nom</label>
-                        <input type="text" placeholder="El teu nom o empresa" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Correu electrònic</label>
-                        <input type="email" placeholder="contacte@empresa.com" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Telèfon de contacte</label>
-                        <input type="tel" placeholder="600 000 000" required pattern="[0-9]{9,13}">
-                    </div>
-                    <div class="input-group">
-                        <label>Missatge</label>
-                        <textarea rows="4" placeholder="Com podem ajudar la teva logística?" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">ENVIAR SOL·LICITUD</button>
-                </form>
-            </div>
+        <div class="contact-form">
+            <form action="#">
+                <div class="input-group">
+                    <label>Nom</label>
+                    <input type="text" placeholder="El teu nom" required>
+                </div>
+                <div class="input-group">
+                    <label>Email</label>
+                    <input type="email" placeholder="hola@empresa.com" required>
+                </div>
+                <div class="input-group">
+                    <label>Telèfon</label>
+                    <input type="tel" placeholder="600 000 000" required>
+                </div>
+                <div class="input-group">
+                    <label>Missatge</label>
+                    <textarea rows="4" placeholder="Com et podem ajudar?" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">ENVIAR</button>
+            </form>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 Foodlogistics. Mataró, Catalunya.</p>
-        <p style="font-size: 0.75rem; margin-top: 10px;">Estructura i imatges (Unsplash) generades amb l'assistència de Gemini.</p>
+        <p>&copy; 2026 Foodlogistics. Imatges d'Unsplash generades per Gemini.</p>
     </footer>
 
 </body>
