@@ -3,658 +3,384 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Foodlogistics | Benvinguts a l'Avantguarda del Fred</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Foodlogistics | Logística de Vanguardia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        /* CSS PRINCIPAL Y ANIMACIONES ESPECTACULARES */
-
         :root {
-            /* Colores de Marca y Neón */
-            --bg-dark: #020617; /* Fondo ultra oscuro */
-            --bg-cards: rgba(15, 23, 42, 0.4); /* Glassmorphism para tarjetas */
-            --neon-green: #00ff88;
-            --neon-blue: #00d2ff;
-            --neon-cyan: #14b8a6;
-            --gold-copper: #c29966;
-            --text-light: #f1f5f9;
-            --text-gold-copper: #d4af37;
-            --text-neon-cyan: #a5f3e0;
-            --text-muted: #94a3b8;
-            --glow-particles: rgba(20, 184, 166, 0.2);
-
-            /* Tipografía */
-            --font-main: 'Poppins', sans-serif;
-            --font-heading: 'Montserrat', sans-serif;
+            --primary: #10b981;
+            --primary-light: #34d399;
+            --secondary: #3b82f6;
+            --secondary-light: #60a5fa;
+            --dark: #070b14;
+            --dark-card: rgba(15, 23, 42, 0.7);
+            --light: #f8fafc;
+            --glass-border: rgba(255, 255, 255, 0.1);
         }
 
-        /* Reset Básico */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
         }
+
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: var(--font-main);
-            background-color: var(--bg-dark);
-            color: var(--text-light);
+            background-color: var(--dark);
+            color: var(--light);
             overflow-x: hidden;
             line-height: 1.6;
         }
 
-        /* --- SECCIÓN HERO PRINCIPAL (La Pantalla de Inicio) --- */
-        .hero-screen {
-            position: relative;
-            width: 100vw;
+        /* --- ANIMACIONES GLOBALES --- */
+        @keyframes zoomBackground {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); filter: blur(10px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+            70% { box-shadow: 0 0 0 20px rgba(16, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        /* --- FONDO DINÁMICO --- */
+        .bg-glow {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(16, 185, 129, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 40%);
+            z-index: -2;
+        }
+
+        /* --- HEADER --- */
+        header {
+            padding: 1.5rem 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(7, 11, 20, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            transition: 0.4s;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .logo-text { font-size: 1.5rem; font-weight: 800; color: white; }
+        .logo-text span { color: var(--primary-light); }
+
+        nav ul { display: flex; gap: 2.5rem; list-style: none; }
+        nav a { 
+            color: var(--light); 
+            text-decoration: none; 
+            font-size: 0.9rem; 
+            font-weight: 600; 
+            transition: 0.3s;
+            opacity: 0.7;
+        }
+        nav a:hover { opacity: 1; color: var(--primary-light); text-shadow: 0 0 10px var(--primary-light); }
+
+        /* --- HERO (Shock Effect) --- */
+        .hero {
             height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
             text-align: center;
-            z-index: 10;
-        }
-
-        /* --- CAPAS DE FONDO PARA EL EFECTO SHOCK --- */
-        .background-layers {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
+            position: relative;
             overflow: hidden;
+            padding: 0 10%;
         }
 
-        /* Capa 1: Foto Espectacular (Toma nocturna moderna con rastros de luz) */
-        .bg-image {
+        .hero-bg {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('images/modern_night_port_mataro.jpg'); /* REEMPLAZAR CON FOTO ESPECTACULAR: Toma nocturna moderna del puerto o centro logístico */
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(7, 11, 20, 0.7), rgba(7, 11, 20, 0.7)), 
+                              url('https://images.unsplash.com/photo-1580674271209-40b4bc7adffe?q=80&w=2000');
             background-size: cover;
             background-position: center;
-            opacity: 0.25; /* Reducir opacidad para integrar la red */
-            filter: blur(2px) contrast(1.1);
-            transform: scale(1.02); /* Para evitar bordes negros en hover */
+            z-index: -1;
+            animation: zoomBackground 20s linear infinite alternate;
         }
 
-        /* Capa 2: Degradado Oscuro */
-        .bg-gradient-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(2,6,23,0.3) 0%, rgba(2,6,23,0.95) 85%);
-            z-index: 2;
+        .hero h1 { 
+            font-size: clamp(3.5rem, 9vw, 6rem); 
+            font-weight: 800; 
+            line-height: 1; 
+            margin-bottom: 2rem; 
+            letter-spacing: -3px;
+            animation: fadeInUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
-        /* Capa 3: Lienzo de Red Neuronal/Datos Animados (JavaScript) */
-        #network-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 3;
-            opacity: 0.8;
-            transition: opacity 0.5s ease;
-        }
-
-        /* --- CONTENIDO SUPERPUESTO (H1, Tarjetas, Botón) --- */
-        .content-overlay {
-            position: relative;
-            width: 100%;
-            max-width: 1400px;
-            padding: 0 40px;
-            z-index: 5;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* Texto del Hero */
-        .hero-text {
-            margin-bottom: 60px;
-            animation: slideUpIn 1s ease-out 0.2sBoth;
-        }
-
-        /* Encabezado Principal H1 (Con gradiente y parpadeo de neón) */
-        .main-title {
-            font-family: var(--font-heading);
-            font-size: clamp(3rem, 6vw, 5.5rem);
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 15px;
-            text-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
-            background: linear-gradient(135deg, var(--gold-copper) 10%, var(--neon-blue) 40%, var(--gold-copper) 60%);
-            -webkit-background-clip: text;
+        .gradient-text { 
+            background: linear-gradient(90deg, var(--primary-light), var(--secondary-light), var(--primary-light));
+            background-size: 200% auto;
+            -webkit-background-clip: text; 
             -webkit-text-fill-color: transparent;
-            animation: titleGlowFlicker 6s linear infinite;
+            animation: shine 3s linear infinite;
         }
 
-        /* Subencabezado */
-        .subtitle {
+        @keyframes shine { to { background-position: 200% center; } }
+
+        .hero p {
             font-size: 1.2rem;
-            font-weight: 300;
-            color: var(--text-muted);
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
+            max-width: 600px;
+            opacity: 0.8;
+            animation: fadeInUp 1.5s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
-        /* Título de Sección de Servicios */
-        .section-title {
-            font-family: var(--font-heading);
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--neon-cyan);
-            margin-bottom: 50px;
-            text-shadow: 0 0 15px var(--glow-particles);
-            opacity: 0;
-            animation: fadeIn 1s ease-out 0.8sBoth;
+        /* --- SECCIONS Y REVELACIÓN --- */
+        section { padding: 150px 10%; opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
+        section.visible { opacity: 1; transform: translateY(0); }
+
+        h2 { 
+            font-size: 3.5rem; 
+            margin-bottom: 5rem; 
+            text-align: center; 
+            font-weight: 800;
+            letter-spacing: -1px;
         }
 
-        /* Cuadrícula de Servicios */
-        .services-grid {
+        /* --- CARDS (Hover Effects) --- */
+        .grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            width: 100%;
-            margin-bottom: 70px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
         }
 
-        /* Tarjeta de Servicio (Glassmorphism + Animación Hover Espectacular) */
         .card {
-            background-color: var(--bg-cards);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(20, 184, 166, 0.08);
-            border-radius: 20px;
+            background: var(--dark-card);
+            backdrop-filter: blur(15px);
+            border-radius: 30px;
+            border: 1px solid var(--glass-border);
             overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-            transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
-            position: relative;
-            opacity: 0;
-            transform: translateY(30px);
+            transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Animaciones de entrada en cascada para tarjetas */
-        .card-1 { animation: slideUpIn 0.8s ease-out 1sBoth; }
-        .card-2 { animation: slideUpIn 0.8s ease-out 1.2sBoth; }
-        .card-3 { animation: slideUpIn 0.8s ease-out 1.4sBoth; }
-
-        /* Efecto Hover de la Tarjeta */
         .card:hover {
-            transform: translateY(-10px) rotateX(2deg); /* Inclinación sutil parallax */
-            border-color: rgba(20, 184, 166, 0.4);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), 0 0 25px var(--glow-particles);
+            transform: translateY(-20px) scale(1.02);
+            border-color: var(--primary);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8), 0 0 20px rgba(16, 185, 129, 0.2);
         }
 
-        /* Pseudo-elemento para el brillo de neón en el borde de la tarjeta en hover */
-        .card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
+        .card-img {
             width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, var(--glow-particles), transparent);
-            transition: 0.6s ease;
-            z-index: 10;
+            height: 280px;
+            background-size: cover;
+            background-position: center;
+            transition: 0.8s ease;
         }
 
-        .card:hover::after {
-            left: 100%;
+        .card:hover .card-img { transform: scale(1.15); filter: contrast(1.1); }
+
+        .card-content { padding: 3rem; }
+        .card h3 { color: var(--primary-light); margin-bottom: 1rem; font-size: 1.8rem; }
+        .card p { color: #94a3b8; font-weight: 300; }
+
+        /* --- FORMULARIO --- */
+        .contact-form {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(15, 23, 42, 0.4);
+            padding: 5rem;
+            border-radius: 40px;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(20px);
         }
 
-        /* Contenedor de Imagen de la Tarjeta */
-        .image-container {
-            width: 100%;
-            height: 250px;
-            overflow: hidden;
+        .input-group { margin-bottom: 2rem; }
+        input, textarea {
+            width: 100%; padding: 1.2rem; background: rgba(0,0,0,0.5); border: 1px solid var(--glass-border);
+            border-radius: 18px; color: white; font-size: 1rem; transition: 0.4s;
         }
+        input:focus, textarea:focus { border-color: var(--primary); outline: none; background: rgba(0,0,0,0.7); }
 
-        .image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
+        .submit-btn {
+            width: 100%; padding: 1.3rem; background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border: none; border-radius: 18px; color: white; font-weight: 800; cursor: pointer;
+            text-transform: uppercase; letter-spacing: 2px; transition: 0.4s;
+            animation: pulseGlow 2s infinite;
         }
+        .submit-btn:hover { transform: scale(1.05); filter: brightness(1.2); }
 
-        .card:hover .image-container img {
-            transform: scale(1.05); /* Zoom sutil de imagen en hover */
+        footer { padding: 5rem; text-align: center; opacity: 0.4; border-top: 1px solid var(--glass-border); }
+
+        @media (max-width: 768px) {
+            header { padding: 1rem 5%; }
+            nav { display: none; }
+            h2 { font-size: 2.5rem; }
+            .contact-form { padding: 2rem; }
         }
-
-        /* Contenido de la Tarjeta */
-        .card-content {
-            padding: 30px;
-        }
-
-        .card-content h3 {
-            font-family: var(--font-heading);
-            font-size: 1.6rem;
-            font-weight: 600;
-            color: var(--neon-cyan);
-            margin-bottom: 15px;
-            text-shadow: 0 0 10px var(--glow-particles);
-        }
-
-        .card-content p {
-            font-size: 1.05rem;
-            font-weight: 300;
-            color: var(--text-muted);
-            line-height: 1.7;
-        }
-
-        /* --- BOTÓN CTA DE CRISTAL (Glassmorphism + Brillo de Pulso) --- */
-        .cta-section {
-            display: flex;
-            justify-content: center;
-            opacity: 0;
-            animation: fadeIn 1s ease-out 1.8sBoth;
-        }
-
-        .cta-button {
-            padding: 20px 50px;
-            font-family: var(--font-heading);
-            font-size: 1.2rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--neon-blue);
-            background: rgba(0, 210, 255, 0.05);
-            border: 1px solid rgba(0, 210, 255, 0.2);
-            border-radius: 50px;
-            backdrop-filter: blur(10px);
-            cursor: pointer;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 10px rgba(0, 210, 255, 0.2);
-            transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease, transform 0.2s ease;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .cta-button:hover {
-            background: rgba(0, 210, 255, 0.1);
-            border-color: rgba(0, 210, 255, 0.6);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 25px rgba(0, 210, 255, 0.4);
-            transform: translateY(-3px);
-        }
-
-        .cta-button:active {
-            transform: translateY(1px);
-        }
-
-        /* Pseudo-elemento para el pulso de brillo interno del botón */
-        .cta-button::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 250px;
-            height: 250px;
-            background: rgba(0, 210, 255, 0.3);
-            border-radius: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            filter: blur(50px);
-            opacity: 0;
-            transition: 0.6s ease;
-            z-index: 1;
-        }
-
-        .cta-button:hover::after {
-            transform: translate(-50%, -50%) scale(1);
-            opacity: 1;
-        }
-
-        /* Superposición de Partículas Falsas en el Botón (Como en la imagen) */
-        .glow-particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 2;
-        }
-
-        .glow-particles::after {
-            content: '';
-            position: absolute;
-            top: -20px;
-            left: 20%;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--neon-blue);
-            box-shadow: 0 0 10px var(--neon-blue);
-            animation: particleFlicker 3s linear infinite;
-        }
-
-        .glow-particles::before {
-            content: '';
-            position: absolute;
-            bottom: 10px;
-            right: 15%;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--neon-cyan);
-            box-shadow: 0 0 12px var(--neon-cyan);
-            animation: particleFlicker 2.5s linear infinite 0.5s;
-        }
-
-        .button-content {
-            position: relative;
-            z-index: 3;
-        }
-
-        /* --- ELEMENTOS DE SUPERPOSICIÓN DE DATOS (Falsos, para ambiente neón) --- */
-        .data-overlays {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 4;
-            pointer-events: none; /* No interceptar clics */
-        }
-
-        .overlay-left, .overlay-right {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            color: rgba(20, 184, 166, 0.3);
-            font-family: var(--font-heading);
-            font-size: 0.9rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-        }
-
-        .overlay-left { left: 40px; text-align: left; }
-        .overlay-right { right: 40px; text-align: right; }
-
-        .data-block {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            opacity: 0.5;
-            animation: dataFlicker 4s linear infinite;
-        }
-
-        .overlay-right .data-block { flex-direction: row-reverse; }
-
-        .data-block span { opacity: 0.6; }
-        .data-block .temp { color: var(--neon-cyan); text-shadow: 0 0 10px var(--neon-cyan); font-weight: 700; opacity: 1; }
-
-        /* Gráficos de Datos (Ondas) */
-        .graph-1, .graph-2 {
-            width: 100px;
-            height: 40px;
-            background: url('images/data_graph_left.svg') no-repeat center/contain; /* REEMPLAZAR CON SVG DE GRÁFICO */
-            opacity: 0.4;
-        }
-        .graph-2 { background-image: url('images/data_graph_right.svg'); }
-
-        /* --- DEFINICIONES DE ANIMACIONES ESPECTACULARES --- */
-
-        /* Animación: Aparición y Deslizamiento hacia arriba */
-        @keyframes slideUpIn {
-            0% { opacity: 0; transform: translateY(30px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Animación: Fundido Simple */
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-        /* Animación: Parpadeo de Neón para el Gradiente de Texto H1 */
-        @keyframes titleGlowFlicker {
-            0%, 5%, 95%, 100% { background: linear-gradient(135deg, var(--gold-copper) 10%, var(--neon-blue) 40%, var(--gold-copper) 60%); text-shadow: 0 0 30px rgba(255, 255, 255, 0.1); }
-            10% { background: linear-gradient(135deg, var(--gold-copper) 15%, var(--neon-blue) 45%, var(--gold-copper) 65%); text-shadow: 0 0 45px rgba(255, 255, 255, 0.3), 0 0 10px var(--neon-blue); }
-            20%, 30%, 40% { background: linear-gradient(135deg, var(--gold-copper) 10%, var(--neon-blue) 40%, var(--gold-copper) 60%); text-shadow: 0 0 30px rgba(255, 255, 255, 0.1); }
-            25% { text-shadow: 0 0 40px rgba(255, 255, 255, 0.25), 0 0 15px var(--gold-copper); }
-            60%, 70%, 80% { background: linear-gradient(135deg, var(--gold-copper) 10%, var(--neon-blue) 40%, var(--gold-copper) 60%); text-shadow: 0 0 30px rgba(255, 255, 255, 0.1); }
-            75% { background: linear-gradient(135deg, var(--gold-copper) 12%, var(--neon-blue) 42%, var(--gold-copper) 62%); text-shadow: 0 0 50px rgba(255, 255, 255, 0.4), 0 0 20px var(--neon-cyan); }
-        }
-
-        /* Animación: Pulso del Botón */
-        @keyframes buttonPulseGlow {
-            0% { box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 10px rgba(0, 210, 255, 0.2); }
-            50% { box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 210, 255, 0.35); }
-            100% { box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 10px rgba(0, 210, 255, 0.2); }
-        }
-
-        /* Aplicar la animación de pulso al botón de forma continua */
-        .cta-button {
-            animation: buttonPulseGlow 3s ease-in-out infinite;
-        }
-
-        /* Detener la animación de pulso en hover para mayor claridad */
-        .cta-button:hover {
-            animation: none;
-        }
-
-        /* Animación: Parpadeo de Partículas Neón del Botón */
-        @keyframes particleFlicker {
-            0%, 5%, 95%, 100% { opacity: 1; transform: scale(1); }
-            10% { opacity: 0.8; transform: scale(0.9); }
-            20% { opacity: 1; transform: scale(1.1); }
-            30% { opacity: 0.9; transform: scale(1); }
-            60% { opacity: 0.85; transform: scale(1.05); }
-            70% { opacity: 1; transform: scale(1); }
-        }
-
-        /* Animación: Parpadeo de Datos de Superposición */
-        @keyframes dataFlicker {
-            0%, 10%, 90%, 100% { opacity: 0.5; }
-            12% { opacity: 0.7; }
-            25% { opacity: 0.55; }
-            50% { opacity: 0.6; }
-            65% { opacity: 0.5; }
-            80% { opacity: 0.65; }
-        }
-
     </style>
 </head>
 <body>
 
-    <main class="hero-screen">
-        <div class="background-layers">
-            <div class="bg-image"></div>
-            <div class="bg-gradient-overlay"></div>
-            <canvas id="network-canvas"></canvas>
-        </div>
+    <div class="bg-glow"></div>
 
-        <div class="content-overlay">
-            <div class="hero-text">
-                <h1 class="main-title gradient-text">
-                    Benvinguts a l'Avantguarda de la Logística del Fred.<br>Som Foodlogistics.
-                </h1>
-                <p class="subtitle">
-                    Mataró | Intel·ligència Artificial | Zero Emissions
-                </p>
+    <header id="navbar">
+        <a href="#" class="logo-container">
+            <div class="logo-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
             </div>
-            
-            <div class="services-section">
-                <h2 class="section-title">Solucions 360º de Fred</h2>
-                <div class="services-grid">
-                    
-                    <div class="card card-1 animate-on-scroll">
-                        <div class="image-container">
-                            <img src="images/refrigerated_trucks.jpg" alt="Transport Refrigerat: Furgoneta neva en carrer de nit"> </div>
-                        <div class="card-content">
-                            <h3>Transport Refrigerat</h3>
-                            <p>Tata de vehicles d'última generació amb sensors de temperatura constants per preservar el producte fresc.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="card card-2 animate-on-scroll">
-                        <div class="image-container">
-                            <img src="images/automated_stock.jpg" alt="Gestió de Stock AI: Almacén automatizado con robots"> </div>
-                        <div class="card-content">
-                            <h3>Gestió de Stock AI</h3>
-                            <p>Algoritmes avançats per preveure la demanda i optimitzar l'emmagatzematge en sec i fred.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="card card-3 animate-on-scroll">
-                        <div class="image-container">
-                            <img src="images/last_mile_city.jpg" alt="Distribució Last-Mile: Furgonetas eléctricas compactas en calle de ciudad"> </div>
-                        <div class="card-content">
-                            <h3>Distribució Last-Mile</h3>
-                            <p>Lliuraments ràpids a Mataró i rodalies amb vehicles elèctrics i sostenibles.</p>
-                        </div>
-                    </div>
+            <div class="logo-text">Food<span>logistics</span></div>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="#inici">Inici</a></li>
+                <li><a href="#serveis">Serveis</a></li>
+                <li><a href="#contacte">Contacte</a></li>
+            </ul>
+        </nav>
+    </header>
 
+    <div id="inici" class="hero">
+        <div class="hero-bg"></div>
+        <h1>Més que <span class="gradient-text">Logística</span>,<br>som Futur.</h1>
+        <p>Solucions de fred intel·ligents i sostenibles per connectar el teu negoci amb el món des de Mataró.</p>
+    </div>
+
+    <section id="serveis">
+        <h2>Experiència 360º</h2>
+        <div class="grid">
+            <div class="card">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=800');"></div>
+                <div class="card-content">
+                    <h3>Transport Refrigerat</h3>
+                    <p>Flota elèctrica equipada amb control de temperatura en temps real per a la màxima frescor.</p>
                 </div>
             </div>
             
-            <div class="cta-section animate-on-scroll">
-                <button class="cta-button glass-effect">
-                    <span class="button-content">
-                        Demana la Teva Solució Intel·ligent Ara
-                        <span class="glow-particles"></span>
-                    </span>
-                </button>
-            </div>
-
-            <div class="data-overlays">
-                <div class="overlay-left animate-data">
-                    <div class="data-block graph-1"><span></span></div>
-                    <div class="data-block"><span>Logistics</span></div>
-                    <div class="data-block"><span>Intel·ligència Artificial</span></div>
-                    <div class="data-block temp"><span>29°C</span></div>
-                </div>
-                <div class="overlay-right animate-data">
-                    <div class="data-block graph-2"><span></span></div>
-                    <div class="data-block"><span>Delivery</span></div>
-                    <div class="data-block temp"><span>25°C</span></div>
-                    <div class="data-block port"><span>Modern Port Mataró</span></div>
-                    <div class="data-block"><span>Zero Emissions</span></div>
+            <div class="card">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=800');"></div>
+                <div class="card-content">
+                    <h3>Gestió de Stock AI</h3>
+                    <p>Utilitzem intel·ligència artificial per preveure la teva demanda i optimitzar el teu inventari.</p>
                 </div>
             </div>
-
+            
+            <div class="card">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1580674684081-77625272a731?q=80&w=800');"></div>
+                <div class="card-content">
+                    <h3>Last-Mile Mataró</h3>
+                    <p>Entrega immediata a la teva porta amb la xarxa més ràpida i ecològica de la ciutat.</p>
+                </div>
+            </div>
         </div>
-    </main>
+    </section>
+
+    <section id="contacte">
+        <div class="contact-form">
+            <form>
+                <div class="input-group">
+                    <label>Empresa</label>
+                    <input type="text" placeholder="El seu negoci..." required>
+                </div>
+                <div class="input-group">
+                    <label>Email</label>
+                    <input type="email" placeholder="correu@empresa.com" required>
+                </div>
+                <div class="input-group">
+                    <label>Projecte</label>
+                    <textarea rows="4" placeholder="Com podem fer-te créixer?"></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Comença ara</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 FOODLOGISTICS MATARÓ. Innovació sense límits.</p>
+    </footer>
 
     <script>
-        // JS PARA LA RED DE PARTÍCULAS ANIMADA (Network Canvas)
-        const canvas = document.getElementById('network-canvas');
-        const ctx = canvas.getContext('2d');
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
-        const dots = [];
-        const numDots = 100; // Número de puntos en la red
-        const connectionDistance = 150; // Distancia máxima para conectar puntos
-        const dotRadius = 1.5; // Radio de los puntos
-        const maxVelocity = 0.5; // Velocidad máxima de los puntos
-
-        const neonGreen = "rgba(0, 255, 136, 0.4)";
-        const neonBlue = "rgba(0, 210, 255, 0.4)";
-        const dotColor = "rgba(255, 255, 255, 0.6)";
-
-        class Dot {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.vx = (Math.random() - 0.5) * maxVelocity * 2;
-                this.vy = (Math.random() - 0.5) * maxVelocity * 2;
-            }
-
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, dotRadius, 0, Math.PI * 2);
-                ctx.fillStyle = dotColor;
-                ctx.fill();
-                ctx.closePath();
-            }
-
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-
-                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
-            }
-        }
-
-        function createDots() {
-            for (let i = 0; i < numDots; i++) {
-                dots.push(new Dot());
-            }
-        }
-
-        function drawConnections() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            for (let i = 0; i < dots.length; i++) {
-                for (let j = i + 1; j < dots.length; j++) {
-                    const d1 = dots[i];
-                    const d2 = dots[j];
-                    const distance = Math.sqrt((d1.x - d2.x) ** 2 + (d1.y - d2.y) ** 2);
-
-                    if (distance < connectionDistance) {
-                        ctx.beginPath();
-                        ctx.moveTo(d1.x, d1.y);
-                        ctx.lineTo(d2.x, d2.y);
-                        
-                        // Gradiente de neón para la línea de conexión
-                        const gradient = ctx.createLinearGradient(d1.x, d1.y, d2.x, d2.y);
-                        gradient.addColorStop(0, neonGreen);
-                        gradient.addColorStop(1, neonBlue);
-                        ctx.strokeStyle = gradient;
-
-                        // Variar opacidad según distancia
-                        ctx.globalAlpha = 1 - (distance / connectionDistance);
-                        ctx.lineWidth = 0.5;
-                        ctx.stroke();
-                        ctx.globalAlpha = 1; // Resetear globalAlpha
-                        ctx.closePath();
-                    }
+        // Efecto de aparición al hacer scroll
+        const observerOptions = { threshold: 0.2 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
                 }
-            }
-        }
-
-        function animate() {
-            drawConnections();
-            dots.forEach(dot => {
-                dot.update();
-                dot.draw();
             });
-            requestAnimationFrame(animate);
-        }
+        }, observerOptions);
 
-        createDots();
-        animate();
-
-        // --- EFECTO SHOCK: PARALLAX SUTIL EN MOUSE MOVE ---
-        const bgImage = document.querySelector('.bg-image');
-        const networkLayer = document.getElementById('network-canvas');
-        const heroScreen = document.querySelector('.hero-screen');
-
-        heroScreen.addEventListener('mousemove', (e) => {
-            const mouseX = (e.clientX - window.innerWidth / 2) / (window.innerWidth / 2);
-            const mouseY = (e.clientY - window.innerHeight / 2) / (window.innerHeight / 2);
-
-            // Parallax sutil: mover fondo y red en direcciones opuestas
-            bgImage.style.transform = `scale(1.02) translate(${mouseX * -5}px, ${mouseY * -5}px)`;
-            networkLayer.style.transform = `translate(${mouseX * 10}px, ${mouseY * 10}px)`;
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
         });
 
+        // Cambio de estilo del navbar al hacer scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.style.padding = '0.8rem 10%';
+                navbar.style.background = 'rgba(7, 11, 20, 0.95)';
+            } else {
+                navbar.style.padding = '1.5rem 10%';
+                navbar.style.background = 'rgba(7, 11, 20, 0.8)';
+            }
+        });
     </script>
 
 </body>
+<!-- Default Statcounter code for Projecte 7 T02
+
+https://xalopa.github.io/web-corporativa/#contacte -->
+
+<script type="text/javascript">
+
+var sc_project=13214963; 
+
+var sc_invisible=1; 
+
+var sc_security="b02ae827"; 
+
+</script>
+
+<script type="text/javascript"
+
+src="https://www.statcounter.com/counter/counter.js" async></script>
+
+<noscript><div class="statcounter"><a title="Web Analytics"
+
+href="https://statcounter.com/" target="_blank"><img class="statcounter"
+
+src="https://c.statcounter.com/13214963/0/b02ae827/1/" alt="Web Analytics"
+
+referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+
+<!-- End of Statcounter Code -->
 </html>
