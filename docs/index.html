@@ -4,19 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Foodlogistics | Logística Intel·ligent Mataró</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #10b981;
             --primary-light: #34d399;
             --secondary: #3b82f6;
-            --dark: #0f172a;
+            --secondary-light: #60a5fa;
+            --dark: #070b14;
+            --dark-card: rgba(15, 23, 42, 0.6);
             --light: #f8fafc;
-            --glass: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-highlight: rgba(255, 255, 255, 0.15);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
 
         body {
             background-color: var(--dark);
@@ -25,14 +37,30 @@
             line-height: 1.6;
         }
 
+        /* Fons animat d'alta qualitat */
         .bg-glow {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 50% 50%, #064e3b 0%, #0f172a 100%);
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: 
+                radial-gradient(circle at 15% 50%, rgba(16, 185, 129, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 85% 30%, rgba(59, 130, 246, 0.08) 0%, transparent 40%),
+                linear-gradient(to bottom, #070b14, #0f172a);
             z-index: -2;
         }
 
-        /* --- HEADER I LOGO NOU --- */
+        /* Animacions globals */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* --- HEADER --- */
         header {
             padding: 1rem 10%;
             display: flex;
@@ -42,137 +70,314 @@
             width: 100%;
             top: 0;
             z-index: 1000;
-            backdrop-filter: blur(15px);
+            background: rgba(7, 11, 20, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--glass-border);
-            background: rgba(15, 23, 42, 0.5);
+            transition: all 0.3s ease;
         }
 
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 15px;
             text-decoration: none;
+            transition: transform 0.3s ease;
         }
 
-        /* Logo SVG dinàmic i bonic */
+        .logo-container:hover {
+            transform: scale(1.05);
+        }
+
         .logo-icon {
-            width: 45px;
-            height: 45px;
+            width: 48px;
+            height: 48px;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 12px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 8px 15px rgba(16, 185, 129, 0.3);
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-icon::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: linear-gradient(rgba(255,255,255,0.2), transparent);
+            transform: rotate(45deg);
         }
 
         .logo-text {
-            font-size: 1.6rem;
+            font-size: 1.7rem;
             font-weight: 800;
             color: white;
             letter-spacing: -1px;
         }
 
         .logo-text span {
-            color: var(--primary-light);
+            background: linear-gradient(45deg, var(--primary-light), var(--secondary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        nav ul { display: flex; gap: 2rem; list-style: none; }
-        nav a { color: var(--light); text-decoration: none; font-size: 0.9rem; font-weight: 500; opacity: 0.7; transition: 0.3s; }
-        nav a:hover { opacity: 1; color: var(--primary-light); }
+        nav ul { display: flex; gap: 2.5rem; list-style: none; }
+        
+        nav a { 
+            color: var(--light); 
+            text-decoration: none; 
+            font-size: 0.95rem; 
+            font-weight: 600; 
+            opacity: 0.8; 
+            transition: 0.3s;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; width: 0; height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover { opacity: 1; }
+        nav a:hover::after { width: 100%; }
 
         /* --- HERO --- */
         .hero {
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
             padding: 0 10%;
-            background-image: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.6)), 
-                              url('https://images.unsplash.com/photo-1580674271209-40b4bc7adffe?q=80&w=2000');
+            position: relative;
+            /* Imatge de fons molt difuminada i fosca perquè el text brilli */
+            background-image: 
+                linear-gradient(rgba(7, 11, 20, 0.9), rgba(7, 11, 20, 0.7)), 
+                url('https://images.unsplash.com/photo-1580674271209-40b4bc7adffe?q=80&w=2000');
             background-size: cover;
             background-position: center;
+            background-attachment: fixed;
         }
 
-        .hero h1 { font-size: clamp(2.5rem, 8vw, 5.5rem); font-weight: 800; line-height: 1; margin-bottom: 1.5rem; letter-spacing: -3px; }
-        .gradient-text { background: linear-gradient(45deg, var(--primary-light), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero h1 { 
+            font-size: clamp(3rem, 8vw, 6rem); 
+            font-weight: 800; 
+            line-height: 1.1; 
+            margin-bottom: 1.5rem; 
+            letter-spacing: -2px;
+            animation: fadeInUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.4rem);
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 600px;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s forwards;
+            opacity: 0;
+        }
+
+        .gradient-text { 
+            background: linear-gradient(to right, var(--primary-light), var(--secondary)); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            display: inline-block;
+            animation: float 6s ease-in-out infinite;
+        }
 
         /* --- SERVEIS --- */
         section { padding: 120px 10%; }
-        h2 { font-size: 3rem; margin-bottom: 4rem; text-align: center; font-weight: 800; letter-spacing: -1px; }
+        
+        h2 { 
+            font-size: 3.5rem; 
+            margin-bottom: 4rem; 
+            text-align: center; 
+            font-weight: 800; 
+            letter-spacing: -1.5px;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px; left: 50%; transform: translateX(-50%);
+            width: 80px; height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
 
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
+            gap: 3rem;
         }
 
         .card {
-            background: var(--glass);
-            border-radius: 30px;
+            background: var(--dark-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 24px;
             border: 1px solid var(--glass-border);
             overflow: hidden;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            animation: fadeInUp 1s forwards;
         }
 
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.3s; }
+        .card:nth-child(3) { animation-delay: 0.5s; }
+
         .card:hover {
-            transform: translateY(-15px);
-            border-color: var(--primary);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-            background: rgba(255, 255, 255, 0.06);
+            transform: translateY(-15px) scale(1.02);
+            border-color: rgba(16, 185, 129, 0.4);
+            box-shadow: 0 25px 50px rgba(16, 185, 129, 0.15), 0 0 0 1px rgba(16, 185, 129, 0.2) inset;
+            background: rgba(30, 41, 59, 0.8);
         }
 
         .card-img {
             width: 100%;
-            height: 250px;
+            height: 240px;
             background-size: cover;
             background-position: center;
-            transition: 0.5s;
+            transition: 0.7s ease;
+            position: relative;
         }
 
-        .card:hover .card-img { transform: scale(1.1); }
+        .card-img::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent, var(--dark-card));
+        }
 
-        .card-content { padding: 2.5rem; }
-        .card h3 { color: var(--primary-light); margin-bottom: 1rem; font-size: 1.6rem; font-weight: 800; }
-        .card p { font-size: 1rem; opacity: 0.7; font-weight: 300; }
+        .card:hover .card-img { transform: scale(1.08); }
+
+        .card-content { 
+            padding: 2.5rem; 
+            position: relative;
+            z-index: 1;
+        }
+
+        .card h3 { 
+            color: white; 
+            margin-bottom: 1rem; 
+            font-size: 1.6rem; 
+            font-weight: 800; 
+            transition: color 0.3s ease;
+        }
+
+        .card:hover h3 { color: var(--primary-light); }
+        .card p { font-size: 1.05rem; color: #cbd5e1; font-weight: 300; line-height: 1.7; }
 
         /* --- CONTACTE --- */
         .contact-form {
-            max-width: 700px;
+            max-width: 650px;
             margin: 0 auto;
-            background: var(--glass);
+            background: rgba(15, 23, 42, 0.5);
             padding: 4rem;
-            border-radius: 40px;
+            border-radius: 30px;
             border: 1px solid var(--glass-border);
             backdrop-filter: blur(20px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
         }
 
-        .input-group { margin-bottom: 1.5rem; text-align: left; }
-        label { display: block; margin-bottom: 0.6rem; font-size: 0.75rem; opacity: 0.5; text-transform: uppercase; letter-spacing: 2px; }
+        /* Lluentor de fons al formulari */
+        .contact-form::before {
+            content: '';
+            position: absolute;
+            top: -50px; right: -50px;
+            width: 150px; height: 150px;
+            background: var(--primary);
+            filter: blur(100px);
+            opacity: 0.3;
+            border-radius: 50%;
+        }
+
+        .input-group { margin-bottom: 2rem; position: relative; }
+        
+        label { 
+            display: block; 
+            margin-bottom: 0.8rem; 
+            font-size: 0.8rem; 
+            color: #94a3b8; 
+            text-transform: uppercase; 
+            letter-spacing: 1.5px; 
+            font-weight: 600;
+        }
         
         input, textarea {
-            width: 100%; padding: 1.2rem; background: rgba(0,0,0,0.2); border: 1px solid var(--glass-border);
-            border-radius: 15px; color: white; font-size: 1rem; transition: 0.3s;
+            width: 100%; 
+            padding: 1.2rem 1.5rem; 
+            background: rgba(0,0,0,0.3); 
+            border: 1px solid var(--glass-border);
+            border-radius: 12px; 
+            color: white; 
+            font-size: 1rem; 
+            transition: all 0.3s ease;
         }
 
-        input:focus, textarea:focus { outline: none; border-color: var(--primary); background: rgba(0,0,0,0.4); }
+        input::placeholder, textarea::placeholder { color: #475569; }
+
+        input:focus, textarea:focus { 
+            outline: none; 
+            border-color: var(--primary-light); 
+            background: rgba(0,0,0,0.5); 
+            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+        }
 
         .submit-btn {
-            width: 100%; padding: 1.2rem; background: linear-gradient(45deg, var(--primary), var(--secondary));
-            border: none; border-radius: 15px; color: white; font-weight: 800; cursor: pointer; transition: 0.4s;
+            width: 100%; 
+            padding: 1.2rem; 
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none; 
+            border-radius: 12px; 
+            color: white; 
+            font-size: 1.1rem;
+            font-weight: 800; 
+            cursor: pointer; 
+            transition: all 0.4s ease;
             letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
         }
 
-        .submit-btn:hover { transform: scale(1.02); box-shadow: 0 10px 20px rgba(16, 185, 129, 0.4); }
+        .submit-btn:hover { 
+            transform: translateY(-3px); 
+            box-shadow: 0 15px 30px rgba(59, 130, 246, 0.4); 
+            background: linear-gradient(135deg, var(--primary-light), var(--secondary-light));
+        }
 
-        footer { padding: 5rem; text-align: center; opacity: 0.4; font-size: 0.8rem; letter-spacing: 1px; }
+        footer { 
+            padding: 4rem 10%; 
+            text-align: center; 
+            color: #64748b; 
+            font-size: 0.9rem; 
+            letter-spacing: 1px; 
+            border-top: 1px solid var(--glass-border);
+            background: rgba(7, 11, 20, 0.9);
+        }
 
         @media (max-width: 768px) {
             header { padding: 1rem 5%; }
             nav { display: none; }
             section { padding: 80px 5%; }
+            .hero h1 { font-size: 2.5rem; }
+            .contact-form { padding: 2.5rem; }
         }
     </style>
 </head>
@@ -184,9 +389,9 @@
         <a href="#" class="logo-container">
             <div class="logo-icon">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 2L3 7V17L12 22L21 17V7L12 2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M12 22V12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M21 7L12 12L3 7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M12 2L3 7V17L12 22L21 17V7L12 2Z" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M12 22V12" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M21 7L12 12L3 7" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </div>
             <div class="logo-text">Food<span>logistics</span></div>
@@ -259,8 +464,6 @@
     </footer>
 
 </body>
-<!-- Default Statcounter code for Projecte 7 T02
-https://xalopa.github.io/web-corporativa/#contacte -->
 <script type="text/javascript">
 var sc_project=13214963; 
 var sc_invisible=1; 
@@ -272,5 +475,4 @@ src="https://www.statcounter.com/counter/counter.js" async></script>
 href="https://statcounter.com/" target="_blank"><img class="statcounter"
 src="https://c.statcounter.com/13214963/0/b02ae827/1/" alt="Web Analytics"
 referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
-<!-- End of Statcounter Code -->
 </html>
