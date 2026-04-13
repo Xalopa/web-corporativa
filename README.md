@@ -5,7 +5,7 @@ Aquesta és la web corporativa de Foodlogistics es una empresa fictícia dedicad
 
 ## Demostració
 
-🔗 [[https://github.com/Xalopa/web-corporativa](https://xalopa.github.io/web-corporativa/)]([https://github.com/Xalopa/web-corporativa](https://xalopa.github.io/web-corporativa/))
+🔗 [[(https://xalopa.github.io/web-corporativa/)](https://xalopa.github.io/web-corporativa/))
 
 ## Tecnologies Utilitzades
 
