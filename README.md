@@ -1,7 +1,7 @@
 
-# Web Corporativa de [Nom de l'Empresa]
+# Web Corporativa de FoodLogistics
 
-Aquesta és la web corporativa de [Nom de l'Empresa], una empresa fictícia dedicada a [descripció breu de l'empresa] dins el mòdul *Projecte Intermodular*.
+Aquesta és la web corporativa de Foodlogistics es una empresa fictícia dedicada a la logística dins el mòdul *Projecte Intermodular*.
 
 ## Demostració
 
