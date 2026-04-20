@@ -224,27 +224,147 @@
         }
 
         .input-group { margin-bottom: 2rem; }
-        input, textarea {
+        input[type="text"], input[type="email"], input[type="tel"], textarea {
             width: 100%; padding: 1.2rem; background: rgba(0,0,0,0.5); border: 1px solid var(--glass-border);
             border-radius: 18px; color: white; font-size: 1rem; transition: 0.4s;
         }
         input:focus, textarea:focus { border-color: var(--primary); outline: none; background: rgba(0,0,0,0.7); }
 
+        /* Estils adaptats pels checkboxes legals */
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 1.5rem;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 22px;
+            height: 22px;
+            margin-top: 3px;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+
+        .checkbox-group label {
+            font-size: 0.9rem;
+            color: #cbd5e1;
+            cursor: pointer;
+            line-height: 1.4;
+        }
+
+        .checkbox-group a {
+            color: var(--primary-light);
+            text-decoration: underline;
+        }
+
         .submit-btn {
             width: 100%; padding: 1.3rem; background: linear-gradient(45deg, var(--primary), var(--secondary));
             border: none; border-radius: 18px; color: white; font-weight: 800; cursor: pointer;
             text-transform: uppercase; letter-spacing: 2px; transition: 0.4s;
+            margin-top: 1rem;
             animation: pulseGlow 2s infinite;
         }
         .submit-btn:hover { transform: scale(1.05); filter: brightness(1.2); }
 
-        footer { padding: 5rem; text-align: center; opacity: 0.4; border-top: 1px solid var(--glass-border); }
+        /* --- FOOTER & ENLLAÇOS LEGALS --- */
+        footer { 
+            padding: 4rem 10%; 
+            text-align: center; 
+            border-top: 1px solid var(--glass-border); 
+            background: rgba(7, 11, 20, 0.9);
+        }
+
+        .legal-links {
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .legal-links a {
+            color: var(--primary-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .legal-links a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        footer p { opacity: 0.5; font-size: 0.85rem; }
+
+        /* --- BANNER DE COOKIES --- */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0; left: 0; width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(15px);
+            border-top: 1px solid var(--primary);
+            padding: 1.5rem 10%;
+            z-index: 9999;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            transition: transform 0.5s ease-in-out;
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.5);
+        }
+
+        .cookie-banner.hidden {
+            transform: translateY(100%);
+        }
+
+        .cookie-text p {
+            font-size: 0.95rem;
+            margin: 0;
+            color: var(--light);
+        }
+
+        .cookie-text a {
+            color: var(--primary-light);
+            text-decoration: underline;
+        }
+
+        .cookie-buttons {
+            display: flex;
+            gap: 15px;
+            flex-shrink: 0;
+        }
+
+        .btn-cookie {
+            padding: 0.8rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            border: none;
+        }
+
+        .btn-accept {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-accept:hover { background: var(--primary-light); }
+
+        .btn-reject {
+            background: transparent;
+            border: 1px solid var(--glass-border);
+            color: white;
+        }
+
+        .btn-reject:hover { background: rgba(255,255,255,0.1); }
 
         @media (max-width: 768px) {
             header { padding: 1rem 5%; }
             nav { display: none; }
             h2 { font-size: 2.5rem; }
             .contact-form { padding: 2rem; }
+            .cookie-banner { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
@@ -305,26 +425,56 @@
 
     <section id="contacte">
         <div class="contact-form">
-            <form>
+            <form action="#" method="POST">
                 <div class="input-group">
-                    <label>Empresa</label>
-                    <input type="text" placeholder="El seu negoci..." required>
+                    <label>Nom complet</label>
+                    <input type="text" placeholder="Introdueix el teu nom..." required>
                 </div>
                 <div class="input-group">
-                    <label>Email</label>
-                    <input type="email" placeholder="correu@empresa.com" required>
+                    <label>Correu electrònic</label>
+                    <input type="email" placeholder="correu@exemple.com" required>
                 </div>
                 <div class="input-group">
-                    <label>Projecte</label>
-                    <textarea rows="4" placeholder="Com podem fer-te créixer?"></textarea>
+                    <label>Telèfon</label>
+                    <input type="tel" placeholder="+34 600 000 000" required>
                 </div>
+                <div class="input-group">
+                    <label>Missatge</label>
+                    <textarea rows="4" placeholder="Com podem ajudar-te?" required></textarea>
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="check-privacitat" required>
+                    <label for="check-privacitat">He llegit i accepto la <a href="privacitat.html" target="_blank">Política de Privacitat</a> en relació al tractament de les meves dades.*</label>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="check-comunicacions">
+                    <label for="check-comunicacions">Autoritzo l'enviament de comunicacions comercials relacionades amb els serveis, segons el descrit a l'<a href="avis-legal.html" target="_blank">Avís Legal</a>.</label>
+                </div>
+
                 <button type="submit" class="submit-btn">Comença ara</button>
             </form>
         </div>
     </section>
 
+    <div id="cookie-banner" class="cookie-banner">
+        <div class="cookie-text">
+            <p>Utilitzem cookies pròpies i de tercers per analitzar el trànsit, personalitzar continguts i millorar l'experiència d'usuari. Pots obtenir més informació a la nostra <a href="cookies.html">Política de Cookies</a>.</p>
+        </div>
+        <div class="cookie-buttons">
+            <button id="btn-accept" class="btn-cookie btn-accept">Acceptar totes</button>
+            <button id="btn-reject" class="btn-cookie btn-reject">Rebutjar</button>
+        </div>
+    </div>
+
     <footer>
-        <p>&copy; 2026 FOODLOGISTICS MATARÓ. Innovació sense límits.</p>
+        <div class="legal-links">
+            <a href="avis-legal.html">Avís Legal</a>
+            <a href="privacitat.html">Política de Privacitat</a>
+            <a href="cookies.html">Política de Cookies</a>
+        </div>
+        <p>&copy; 2026 FOODLOGISTICS MATARÓ. Tots els drets reservats.</p>
     </footer>
 
     <script>
@@ -353,34 +503,38 @@
                 navbar.style.background = 'rgba(7, 11, 20, 0.8)';
             }
         });
+
+        // Lògica del Banner de Cookies
+        document.addEventListener("DOMContentLoaded", function() {
+            const cookieBanner = document.getElementById('cookie-banner');
+            const btnAccept = document.getElementById('btn-accept');
+            const btnReject = document.getElementById('btn-reject');
+
+            // Si no hi ha cap cookie desada, mostrem el baner
+            if (!localStorage.getItem('cookiesAceptadas')) {
+                cookieBanner.classList.remove('hidden');
+            } else {
+                cookieBanner.classList.add('hidden');
+            }
+
+            // Funció per amagar el baner
+            function hideBanner() {
+                cookieBanner.classList.add('hidden');
+                localStorage.setItem('cookiesAceptadas', 'true');
+            }
+
+            btnAccept.addEventListener('click', hideBanner);
+            btnReject.addEventListener('click', hideBanner);
+        });
     </script>
 
+    <script type="text/javascript">
+    var sc_project=13214963; 
+    var sc_invisible=1; 
+    var sc_security="b02ae827"; 
+    </script>
+    <script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async></script>
+    <noscript><div class="statcounter"><a title="Web Analytics" href="https://statcounter.com/" target="_blank"><img class="statcounter" src="https://c.statcounter.com/13214963/0/b02ae827/1/" alt="Web Analytics" referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+
 </body>
-<!-- Default Statcounter code for Projecte 7 T02
-
-https://xalopa.github.io/web-corporativa/#contacte -->
-
-<script type="text/javascript">
-
-var sc_project=13214963; 
-
-var sc_invisible=1; 
-
-var sc_security="b02ae827"; 
-
-</script>
-
-<script type="text/javascript"
-
-src="https://www.statcounter.com/counter/counter.js" async></script>
-
-<noscript><div class="statcounter"><a title="Web Analytics"
-
-href="https://statcounter.com/" target="_blank"><img class="statcounter"
-
-src="https://c.statcounter.com/13214963/0/b02ae827/1/" alt="Web Analytics"
-
-referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
-
-<!-- End of Statcounter Code -->
 </html>
