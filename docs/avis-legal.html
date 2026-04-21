@@ -1,9 +1,72 @@
-<section style="padding-top: 150px; padding-bottom: 50px; opacity: 1; transform: translateY(0);">
-    <div style="max-width: 800px; margin: 0 auto; background: var(--dark-card); padding: 40px; border-radius: 20px; border: 1px solid var(--glass-border);">
-        <h2 style="font-size: 2.5rem; margin-bottom: 2rem; text-align: left;">Avís Legal</h2>
-        <p><strong>Dades del responsable:</strong> FoodLogistic S.A.<br>
-        <strong>NIF:</strong> A-12345678<br>
-        <strong>Adreça:</strong> Polígon Industrial Mata-Rocafonda, Mataró (Barcelona)</p>
-        <p>Aquest espai està destinat a complir amb l'obligació d'informar als usuaris segons la LSSI-CE sobre la propietat de la web i les condicions d'ús...</p>
+<style>
+  .legal-container {
+    padding: 150px 20px 80px;
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.05) 100%);
+  }
+
+  .legal-card {
+    max-width: 850px;
+    width: 100%;
+    background: var(--dark-card, #1a1a1a);
+    padding: 50px;
+    border-radius: 24px;
+    border: 1px solid var(--glass-border, rgba(255,255,255,0.1));
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+  }
+
+  .legal-title {
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin-bottom: 2.5rem;
+    background: linear-gradient(90deg, #fff, #aaa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -1px;
+  }
+
+  .legal-info-box {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+    border-left: 4px solid #3498db; /* Un toque de color corporativo */
+  }
+
+  .legal-info-box p {
+    margin: 8px 0;
+    line-height: 1.6;
+    color: #e0e0e0;
+  }
+
+  .legal-text {
+    line-height: 1.8;
+    color: #b0b0b0;
+    font-size: 1.05rem;
+  }
+
+  strong {
+    color: #fff;
+    font-weight: 600;
+  }
+</style>
+
+<section class="legal-container">
+    <div class="legal-card">
+        <h2 class="legal-title">Avís Legal</h2>
+        
+        <div class="legal-info-box">
+            <p><strong>Dades del responsable:</strong> FoodLogistic S.A.</p>
+            <p><strong>NIF:</strong> A-12345678</p>
+            <p><strong>Adreça:</strong> Polígon Industrial Mata-Rocafonda, Mataró (Barcelona)</p>
+        </div>
+
+        <p class="legal-text">
+            Aquest espai està destinat a complir amb l'obligació d'informar als usuaris segons la 
+            <strong>LSSI-CE</strong> sobre la propietat de la web i les condicions d'ús. Ens comprometem a 
+            garantir la transparència i la seguretat en el tractament de les teves dades.
+        </p>
     </div>
 </section>
