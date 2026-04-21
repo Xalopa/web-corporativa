@@ -1,8 +1,130 @@
-<section style="padding-top: 150px; opacity: 1; transform: translateY(0);">
-    <div style="max-width: 800px; margin: 0 auto; background: var(--dark-card); padding: 40px; border-radius: 20px; border: 1px solid var(--glass-border);">
-        <h2 style="font-size: 2.5rem; margin-bottom: 2rem; text-align: left;">Política de Privacitat</h2>
-        <p><strong>Finalitat del tractament:</strong> Gestionar les consultes realitzades mitjançant el formulari web i, si s'ha consentit, l'enviament de comunicacions comercials.</p>
-        <p><strong>Legitimació:</strong> El consentiment exprés de l'usuari en marcar les caselles de verificació.</p>
-        <p><strong>Drets (ARSLOP):</strong> Vostè té dret a accedir, rectificar i suprimir les seves dades, així com oposar-se o limitar el tractament, escrivint a privacy@foodlogistics.com.</p>
+<style>
+  .privacy-section {
+    padding: 120px 20px 80px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .privacy-card {
+    max-width: 800px;
+    width: 100%;
+    background: var(--dark-card, #151515);
+    padding: 50px;
+    border-radius: 24px;
+    border: 1px solid var(--glass-border, rgba(255,255,255,0.1));
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Detalle decorativo superior */
+  .privacy-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #3498db, #8e44ad);
+  }
+
+  .privacy-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 2.5rem;
+    color: #fff;
+    text-align: left;
+  }
+
+  .privacy-item {
+    margin-bottom: 2rem;
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 15px;
+  }
+
+  /* Iconos circulares decorativos */
+  .privacy-icon {
+    width: 32px;
+    height: 32px;
+    background: rgba(52, 152, 219, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #3498db;
+    font-size: 0.8rem;
+    border: 1px solid rgba(52, 152, 219, 0.2);
+  }
+
+  .privacy-content h3 {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #3498db;
+    margin: 0 0 8px 0;
+  }
+
+  .privacy-content p {
+    margin: 0;
+    line-height: 1.7;
+    color: #d1d1d1;
+    font-size: 1.05rem;
+  }
+
+  .email-link {
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 1px dashed #3498db;
+    transition: all 0.2s;
+  }
+
+  .email-link:hover {
+    color: #3498db;
+    background: rgba(52, 152, 219, 0.1);
+  }
+
+  .rights-box {
+    margin-top: 30px;
+    padding: 20px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+</style>
+
+<section class="privacy-section">
+  <div class="privacy-card">
+    <h2 class="privacy-title">Política de Privacitat</h2>
+
+    <div class="privacy-item">
+      <div class="privacy-icon">01</div>
+      <div class="privacy-content">
+        <h3>Finalitat del tractament</h3>
+        <p>Gestionar les consultes realitzades mitjançant el formulari web i, si s'ha consentit prèviament, l'enviament de comunicacions comercials sobre els nostres serveis.</p>
+      </div>
     </div>
+
+    <div class="privacy-item">
+      <div class="privacy-icon">02</div>
+      <div class="privacy-content">
+        <h3>Legitimació</h3>
+        <p>El tractament de les seves dades es basa exclusivament en el <strong>consentiment exprés</strong> de l'usuari en marcar les caselles de verificació del formulari.</p>
+      </div>
+    </div>
+
+    <div class="privacy-item">
+      <div class="privacy-icon">03</div>
+      <div class="privacy-content">
+        <h3>Drets (ARSLOP)</h3>
+        <div class="rights-box">
+          <p>Vostè té dret a <strong>accedir, rectificar i suprimir</strong> les seves dades, així com oposar-se o limitar el tractament.</p>
+          <p style="margin-top: 15px; font-size: 0.95rem;">
+            Per exercir aquests drets, pot contactar amb nosaltres a: 
+            <a href="mailto:privacy@foodlogistics.com" class="email-link">privacy@foodlogistics.com</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    
+  </div>
 </section>
