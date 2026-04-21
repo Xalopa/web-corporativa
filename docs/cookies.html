@@ -1,10 +1,118 @@
-<section style="padding-top: 150px; opacity: 1; transform: translateY(0);">
-    <div style="max-width: 800px; margin: 0 auto; background: var(--dark-card); padding: 40px; border-radius: 20px; border: 1px solid var(--glass-border);">
-        <h2 style="font-size: 2.5rem; margin-bottom: 2rem; text-align: left;">Política de Cookies</h2>
-        <p>Una cookie és un petit fitxer de text que s'emmagatzema al seu navegador quan visita la nostra web. Serveixen per recordar la seva visita i millorar l'experiència.</p>
-        <p><strong>Cookies utilitzades:</strong><br>
-        - Tècniques (Pròpies, durada de sessió): Necessàries per al correcte funcionament.<br>
-        - Analítiques (Statcounter, 1 any): Per analitzar el trànsit de la web.</p>
-        <p>Pots revocar el consentiment eliminant les galetes des de les opcions del teu navegador.</p>
+<style>
+  .legal-section {
+    padding: 150px 20px 100px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .legal-card {
+    max-width: 800px;
+    width: 100%;
+    background: var(--dark-card, #121212);
+    padding: 50px;
+    border-radius: 24px;
+    border: 1px solid var(--glass-border, rgba(255,255,255,0.1));
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  }
+
+  .legal-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+  }
+
+  .legal-intro {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #b0b0b0;
+    margin-bottom: 2.5rem;
+  }
+
+  /* Contenedor de tabla para que sea responsivo */
+  .table-container {
+    overflow-x: auto;
+    margin-bottom: 2.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .cookie-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    background: rgba(255,255,255,0.02);
+  }
+
+  .cookie-table th {
+    background: rgba(255,255,255,0.05);
+    padding: 15px 20px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #3498db; /* Color de acento */
+  }
+
+  .cookie-table td {
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    color: #e0e0e0;
+    font-size: 0.95rem;
+  }
+
+  .cookie-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .legal-footer {
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.9rem;
+    color: #888;
+    font-style: italic;
+  }
+
+  .highlight {
+    color: #fff;
+    font-weight: 600;
+  }
+</style>
+
+<section class="legal-section">
+    <div class="legal-card">
+        <h2 class="legal-title">Política de Cookies</h2>
+        
+        <p class="legal-intro">
+            Una <span class="highlight">cookie</span> és un petit fitxer de text que s'emmagatzema al seu navegador quan visita la nostra web. Serveixen per recordar la seva visita i oferir-li una millor experiència de navegació.
+        </p>
+
+        <div class="table-container">
+            <table class="cookie-table">
+                <thead>
+                    <tr>
+                        <th>Tipus</th>
+                        <th>Origen / Proveïdor</th>
+                        <th>Durada</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Tècniques</strong> (Necessàries)</td>
+                        <td>Pròpies</td>
+                        <td>Sessió</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Analítiques</strong> (Estadístiques)</td>
+                        <td>Statcounter</td>
+                        <td>1 any</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="legal-footer">
+            Pots revocar el consentiment o configurar les preferències eliminant les galetes des de les opcions de configuració del teu navegador.
+        </div>
     </div>
 </section>
